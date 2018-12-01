@@ -3,19 +3,19 @@
  * Plugin Name: HYP Smart Manager
  * Plugin URI: https://github.com/hypericumimpex/hyp-smart-manager/
  * Description: <code><strong>HYP Bulk Product Editing</strong></code> allows you to edit multiple products at the same time. You can easily filter products and edit all fields you need in a massive, simple and fast way.
- * Version: 1.2.11
- * Author: YITH
+ * Version: 1.2.12
+ * Author: Romeo C.
  * Author URI: https://github.com/hypericumimpex/
  * Text Domain: yith-woocommerce-bulk-product-editing
  * Domain Path: /languages/
  * WC requires at least: 3.0.0
  * WC tested up to: 3.5.x
  *
- * @author yithemes
- * @package YITH WooCommerce Bulk Product Editing Premium
- * @version 1.2.11
+ * @author hypericum
+ * @package HYP Smart Manager
+ * @version 1.2.12
  */
-/*  Copyright 2015  Your Inspiration Themes  (email : plugins@yithemes.com)
+/*
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License, version 2, as
@@ -61,7 +61,7 @@ register_activation_hook( __FILE__, 'yith_plugin_registration_hook' );
 
 
 if ( !defined( 'YITH_WCBEP_VERSION' ) ) {
-    define( 'YITH_WCBEP_VERSION', '1.2.11' );
+    define( 'YITH_WCBEP_VERSION', '1.2.12' );
 }
 
 if ( !defined( 'YITH_WCBEP_PREMIUM' ) ) {
