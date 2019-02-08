@@ -196,12 +196,7 @@ $has_custom_fields_set = !empty( $custom_fields );
                         <select id="yith-wcbep-visibility-bulk-select" name="yith-wcbep-visibility-bulk-select" class="yith-wcbep-miniselect is_resetable">
                             <option value="skip"></option>
                             <?php
-                            $visibility_options = apply_filters( 'woocommerce_product_visibility_options', array(
-                                'visible' => __( 'Catalog/search', 'woocommerce' ),
-                                'catalog' => __( 'Catalog', 'woocommerce' ),
-                                'search'  => __( 'Search', 'woocommerce' ),
-                                'hidden'  => __( 'Hidden', 'woocommerce' ),
-                            ) );
+                            $visibility_options = wc_get_product_visibility_options();
                             foreach ( $visibility_options as $key => $value ) {
                                 ?>
                                 <option value="<?php echo $key ?>"><?php echo $value ?></option> <?php

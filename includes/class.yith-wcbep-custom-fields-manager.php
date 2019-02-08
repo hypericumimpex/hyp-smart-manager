@@ -195,7 +195,7 @@ class YITH_WCBEP_Custom_Fields_Manager {
             $index      = array_search( $field_name, $matrix_keys );
             if ( isset( $single_modify[ $index ] ) && !$is_variation ) {
                 $current_meta = $single_modify[ $index ];
-                update_post_meta( $product->id, $field, $current_meta );
+                update_post_meta( $product->get_id(), $field, $current_meta );
             }
         }
     }

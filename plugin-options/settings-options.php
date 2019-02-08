@@ -17,7 +17,7 @@ $tab = array(
             'type'      => 'yith-field',
             'yith-type' => 'onoff',
             'default'   => 'no',
-            'desc'      => __( 'If enabled, the prices will be rounded when bulk editing.' )
+            'desc'      => __( 'If enabled, the prices will be rounded when bulk editing.', 'yith-woocommerce-bulk-product-editing' )
         ),
 
         'use-regex-on-search' => array(
@@ -26,7 +26,16 @@ $tab = array(
             'type'      => 'yith-field',
             'yith-type' => 'onoff',
             'default'   => 'no',
-            'desc'      => __( 'If enabled, the plugin uses Regular Expressions when searching for texts.' )
+            'desc'      => __( 'If enabled, the plugin uses Regular Expressions when searching for texts.', 'yith-woocommerce-bulk-product-editing' )
+        ),
+
+        'use-light-query' => array(
+            'id'        => 'yith-wcbep-use-light-query',
+            'name'      => __( 'Use Light Query', 'yith-woocommerce-bulk-product-editing' ),
+            'type'      => 'yith-field',
+            'yith-type' => 'onoff',
+            'default'   => 'no',
+            'desc'      => __( 'If enabled, the plugin uses a light query to retrieve products, so it improves your website performance. However, by enabling this option you CANNOT use advanced functionalities: for example, filtering variable products by price will not work. Please note: use it only if you have a huge amount of products.', 'yith-woocommerce-bulk-product-editing' )
         ),
 
         'general-options-end' => array(

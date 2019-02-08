@@ -253,6 +253,8 @@ if ( !class_exists( 'YITH_WCBEP_List_Table_Premium' ) ) {
         }
 
         public function prepare_items( $items = array() ) {
+            $use_light_query = get_option( 'yith-wcbep-use-light-query', 'no' ) === 'yes';
+
             $current_page = $this->get_pagenum();
             $per_page     = !empty( $_REQUEST[ 'f_per_page' ] ) && intval( $_REQUEST[ 'f_per_page' ] ) > 0 ? intval( $_REQUEST[ 'f_per_page' ] ) : 10;
 
@@ -294,7 +296,7 @@ if ( !class_exists( 'YITH_WCBEP_List_Table_Premium' ) ) {
              *
              * @since 1.1.4
              */
-            $this->show_variations = $f_show_variations == 'yes';
+            $this->show_variations = $f_show_variations === 'yes';
             $post_types            = 'product';
 
             $query_args = array(
@@ -307,7 +309,7 @@ if ( !class_exists( 'YITH_WCBEP_List_Table_Premium' ) ) {
                 'order'               => !empty( $_REQUEST[ 'order' ] ) ? $_REQUEST[ 'order' ] : 'DESC',
             );
 
-            $product_types = array( 'variable', 'yith-exclude-variables' );
+            $product_types = $use_light_query ? array( 'any' ) : array( 'variable', 'yith-exclude-variables' );
 
             if ( $f_product_type ) {
                 $product_types = array( $f_product_type );
@@ -356,6 +358,8 @@ if ( !class_exists( 'YITH_WCBEP_List_Table_Premium' ) ) {
             $_product_ids = array();
 
             foreach ( $product_types as $product_type ) {
+                $meta_query  = array();
+                $tax_query   = array();
                 $_query_args = array(
                     'post_type'           => 'product',
                     'post_status'         => !!$f_status ? $f_status : 'any',
@@ -365,17 +369,25 @@ if ( !class_exists( 'YITH_WCBEP_List_Table_Premium' ) ) {
                     'fields'              => 'ids'
                 );
 
-                if ( 'yith-exclude-variables' === $product_type ) {
-                    $_query_args[ 'post__not_in' ] = $variable_ids;
-                } elseif ( 'variable' === $product_type ) {
-                    $_query_args[ 'post__in' ] = !!$variable_ids ? $variable_ids : array( 0 );
+                // Filter Product Type
+                if ( $use_light_query && $f_product_type ) {
+                    $tax_query[] = array(
+                        'taxonomy' => 'product_type',
+                        'field'    => 'slug',
+                        'terms'    => $f_product_type,
+                        'operator' => 'IN',
+                    );
                 } else {
-                    $product_type_term         = get_term_by( 'slug', $product_type, 'product_type' );
-                    $_post_in                  = array_unique( (array) get_objects_in_term( $product_type_term->term_id, 'product_type' ) );
-                    $_query_args[ 'post__in' ] = !!$_post_in ? $_post_in : array( 0 );
+                    if ( 'yith-exclude-variables' === $product_type ) {
+                        $_query_args[ 'post__not_in' ] = $variable_ids;
+                    } elseif ( 'variable' === $product_type ) {
+                        $_query_args[ 'post__in' ] = !!$variable_ids ? $variable_ids : array( 0 );
+                    } elseif ( 'any' !== $product_type ) {
+                        $product_type_term         = get_term_by( 'slug', $product_type, 'product_type' );
+                        $_post_in                  = array_unique( (array) get_objects_in_term( $product_type_term->term_id, 'product_type' ) );
+                        $_query_args[ 'post__in' ] = !!$_post_in ? $_post_in : array( 0 );
+                    }
                 }
-
-                $meta_query = array();
 
                 // Filter SKU
                 if ( isset( $f_sku_val ) && strlen( $f_sku_val ) > 0 ) {
@@ -573,8 +585,8 @@ if ( !class_exists( 'YITH_WCBEP_List_Table_Premium' ) ) {
 
                 // Filter Categories
                 if ( !empty( $filtered_categories ) ) {
-                    $query_args[ 'tax_query' ][ 'relation' ] = 'AND';
-                    $query_args[ 'tax_query' ][]             = array(
+                    $tax_query[ 'relation' ] = 'AND';
+                    $tax_query[]             = array(
                         'taxonomy' => 'product_cat',
                         'field'    => 'term_id',
                         'terms'    => $filtered_categories,
@@ -595,15 +607,15 @@ if ( !class_exists( 'YITH_WCBEP_List_Table_Premium' ) ) {
                         $shipping_class_args[ 'operator' ] = 'IN';
                     }
 
-                    $query_args[ 'tax_query' ][] = $shipping_class_args;
+                    $tax_query[] = $shipping_class_args;
                 }
 
                 // Filter Brands
                 if ( !empty( $filtered_brands ) ) {
                     $yith_brands_taxonomy = class_exists( 'YITH_WCBR' ) && isset( YITH_WCBR::$brands_taxonomy ) ? YITH_WCBR::$brands_taxonomy : 'yith_product_brand';
 
-                    $query_args[ 'tax_query' ][ 'relation' ] = 'AND';
-                    $query_args[ 'tax_query' ][]             = array(
+                    $tax_query[ 'relation' ] = 'AND';
+                    $tax_query[]             = array(
                         'taxonomy' => $yith_brands_taxonomy,
                         'field'    => 'term_id',
                         'terms'    => $filtered_brands,
@@ -615,8 +627,8 @@ if ( !class_exists( 'YITH_WCBEP_List_Table_Premium' ) ) {
                 if ( !empty( $filtered_custom_taxonomies ) ) {
                     foreach ( $filtered_custom_taxonomies as $filtered_custom_taxonomy ) {
                         if ( !empty( $filtered_custom_taxonomy[ 'taxonomy' ] ) && !empty( $filtered_custom_taxonomy[ 'values' ] ) ) {
-                            $query_args[ 'tax_query' ][ 'relation' ] = 'AND';
-                            $query_args[ 'tax_query' ][]             = array(
+                            $tax_query[ 'relation' ] = 'AND';
+                            $tax_query[]             = array(
                                 'taxonomy' => $filtered_custom_taxonomy[ 'taxonomy' ],
                                 'field'    => 'term_id',
                                 'field'    => 'term_id',
@@ -629,8 +641,8 @@ if ( !class_exists( 'YITH_WCBEP_List_Table_Premium' ) ) {
 
                 // Filter Categories
                 if ( !empty( $filtered_tags ) ) {
-                    $query_args[ 'tax_query' ][ 'relation' ] = 'AND';
-                    $query_args[ 'tax_query' ][]             = array(
+                    $tax_query[ 'relation' ] = 'AND';
+                    $tax_query[]             = array(
                         'taxonomy' => 'product_tag',
                         'field'    => 'term_id',
                         'terms'    => $filtered_tags,
@@ -648,8 +660,8 @@ if ( !class_exists( 'YITH_WCBEP_List_Table_Premium' ) ) {
                                 $attr_name = $attribute[ 0 ];
                                 $attr_ids  = $attribute[ 1 ];
 
-                                $query_args[ 'tax_query' ][ 'relation' ] = 'AND';
-                                $query_args[ 'tax_query' ][]             = array(
+                                $tax_query[ 'relation' ] = 'AND';
+                                $tax_query[]             = array(
                                     'taxonomy' => $attr_name,
                                     'field'    => 'id',
                                     'terms'    => $attr_ids,
@@ -664,18 +676,42 @@ if ( !class_exists( 'YITH_WCBEP_List_Table_Premium' ) ) {
                     $_query_args[ 'meta_query' ][ 'relation' ] = 'AND';
                 }
 
-                add_filter( 'posts_where', 'yith_wcbep_posts_filter_where' );
-                $_current_product_ids = get_posts( $_query_args );
-                remove_filter( 'posts_where', 'yith_wcbep_posts_filter_where' );
+                if ( !empty( $tax_query ) ) {
+                    $_query_args[ 'tax_query' ] = $tax_query;
+                }
 
-                $_product_ids = array_merge( $_product_ids, $_current_product_ids );
+                if ( !$use_light_query ) {
+                    add_filter( 'posts_where', 'yith_wcbep_posts_filter_where' );
+                    $_current_product_ids = get_posts( $_query_args );
+                    remove_filter( 'posts_where', 'yith_wcbep_posts_filter_where' );
+
+                    $_product_ids = array_merge( $_product_ids, $_current_product_ids );
+                }
             }
 
-            $_product_ids             = !!$_product_ids ? $_product_ids : array( 0 );
-            $query_args[ 'post__in' ] = $_product_ids;
+            if ( $use_light_query ) {
+                if ( isset( $_query_args ) ) {
+                    unset( $_query_args[ 'post_type' ] );
+                    unset( $_query_args[ 'post_status' ] );
+                    unset( $_query_args[ 'posts_per_page' ] );
+                    unset( $_query_args[ 'ignore_sticky_posts' ] );
+                    unset( $_query_args[ 'suppress_filters' ] );
+                    unset( $_query_args[ 'fields' ] );
+                    $query_args = wp_parse_args( $_query_args, $query_args );
+                }
+            } else {
+                $_product_ids             = !!$_product_ids ? $_product_ids : array( 0 );
+                $query_args[ 'post__in' ] = $_product_ids;
+            }
 
-            $query_args  = apply_filters( 'yith_wcbep_product_list_query_args', $query_args );
-            $p_query     = new WP_Query( $query_args );
+            $query_args = apply_filters( 'yith_wcbep_product_list_query_args', $query_args );
+
+            $use_light_query && add_filter( 'posts_where', 'yith_wcbep_posts_filter_where' );
+
+            $p_query = new WP_Query( $query_args );
+
+            $use_light_query && remove_filter( 'posts_where', 'yith_wcbep_posts_filter_where' );
+
             $my_items    = apply_filters( 'yith_wcbep_items', $p_query->posts );
             $this->items = $my_items;
 
@@ -952,12 +988,7 @@ if ( !class_exists( 'YITH_WCBEP_List_Table_Premium' ) ) {
                     $r .= '<input type="hidden" class="yith-wcbep-hidden-select-value" value="' . $status . '"/>';
                     break;
                 case 'visibility':
-                    $visibility_options = apply_filters( 'woocommerce_product_visibility_options', array(
-                        'visible' => __( 'Catalog/search', 'woocommerce' ),
-                        'catalog' => __( 'Catalog', 'woocommerce' ),
-                        'search'  => __( 'Search', 'woocommerce' ),
-                        'hidden'  => __( 'Hidden', 'woocommerce' ),
-                    ) );
+                    $visibility_options = wc_get_product_visibility_options();
                     $r                  = '<select class="yith-wcbep-editable-select">';
 
                     $visibility = yit_get_prop( $product, '_catalog_visibility', true, 'edit' );

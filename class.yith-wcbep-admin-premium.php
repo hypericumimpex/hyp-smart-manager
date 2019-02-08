@@ -501,7 +501,7 @@ if ( !class_exists( 'YITH_WCBEP_Admin_Premium' ) ) {
                             $post      = get_post( yit_get_base_product_id( $product ) );
                             $post_date = $post->post_date;
 
-                            if ( date( 'Y-m-d', strtotime( $product->post_date ) ) != date( 'Y-m-d', strtotime( $date ) ) )
+                            if ( date( 'Y-m-d', strtotime( $post_date ) ) != date( 'Y-m-d', strtotime( $date ) ) )
                                 $post_date = date( $date );
 
                             $this_post[ 'post_date' ]     = $post_date;
@@ -510,9 +510,6 @@ if ( !class_exists( 'YITH_WCBEP_Admin_Premium' ) ) {
 
                         if ( isset( $title ) )
                             $this_post[ 'post_title' ] = $title;
-
-                        if ( isset( $shortdesc ) )
-                            $this_post[ 'post_excerpt' ] = $shortdesc;
 
                         if ( isset( $enable_reviews ) )
                             $this_post[ 'comment_status' ] = $enable_reviews;
@@ -561,6 +558,10 @@ if ( !class_exists( 'YITH_WCBEP_Admin_Premium' ) ) {
 
                     if ( isset( $description ) ) {
                         $product->set_description( $description );
+                    }
+
+                    if ( isset( $shortdesc ) ) {
+                        $product->set_short_description( $shortdesc );
                     }
 
                     // EDIT SKU
@@ -614,7 +615,7 @@ if ( !class_exists( 'YITH_WCBEP_Admin_Premium' ) ) {
 
                     // EDIT STOCK QUANTITY
                     if ( !$product->is_type( 'grouped' ) && isset( $stock_quantity ) )
-                        wc_update_product_stock( $product, wc_stock_amount( $stock_quantity ) );
+                        $product->set_stock_quantity( wc_stock_amount( $stock_quantity ) );
 
                     // EDIT SOLD INDIVIDUALLY
                     if ( isset( $sold_individually ) && !$is_variation )

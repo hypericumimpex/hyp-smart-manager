@@ -1,14 +1,14 @@
-# Copyright (C) 2018 YITH
+# Copyright (C) 2019 YITH
 # This file is distributed under the same license as the YITH WooCommerce Bulk Product Editing Premium package.
 msgid ""
 msgstr ""
 "Project-Id-Version: YITH WooCommerce Bulk Product Editing Premium 1.2.12\n"
 "Report-Msgid-Bugs-To: Your Inspiration Themes <plugins@yithemes.com>\n"
-"POT-Creation-Date: 2018-11-30 07:23:53+00:00\n"
+"POT-Creation-Date: 2019-01-28 09:42:15+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2018-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2019-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Your Inspiration Themes <info@yithemes.com>\n"
 "Language: en\n"
@@ -62,13 +62,13 @@ msgid_plural "%s products deleted"
 msgstr[0] ""
 msgstr[1] ""
 
-#: class.yith-wcbep-admin-premium.php:833
+#: class.yith-wcbep-admin-premium.php:834
 msgid ""
 "The downloadable file %s cannot be used as it does not have an allowed file "
 "type. Allowed types include: %s"
 msgstr ""
 
-#: class.yith-wcbep-admin-premium.php:840
+#: class.yith-wcbep-admin-premium.php:841
 msgid "The downloadable file %s cannot be used as it does not exist on the server."
 msgstr ""
 
@@ -126,26 +126,26 @@ msgid "Delete Selected"
 msgstr ""
 
 #: functions.yith-wcbep-premium.php:130
-#: includes/class.yith-wcbep-list-table-premium.php:993
-#: templates/premium/main-tab-bulk-editor.php:643
+#: includes/class.yith-wcbep-list-table-premium.php:1024
+#: templates/premium/main-tab-bulk-editor.php:638
 msgid "Grouped product"
 msgstr ""
 
 #: functions.yith-wcbep-premium.php:133
-#: includes/class.yith-wcbep-list-table-premium.php:994
-#: templates/premium/main-tab-bulk-editor.php:644
+#: includes/class.yith-wcbep-list-table-premium.php:1025
+#: templates/premium/main-tab-bulk-editor.php:639
 msgid "External/Affiliate product"
 msgstr ""
 
 #: functions.yith-wcbep-premium.php:136
-#: includes/class.yith-wcbep-list-table-premium.php:995
-#: templates/premium/main-tab-bulk-editor.php:645
+#: includes/class.yith-wcbep-list-table-premium.php:1026
+#: templates/premium/main-tab-bulk-editor.php:640
 msgid "Variable product"
 msgstr ""
 
 #: functions.yith-wcbep-premium.php:139
-#: includes/class.yith-wcbep-list-table-premium.php:992
-#: templates/premium/main-tab-bulk-editor.php:642
+#: includes/class.yith-wcbep-list-table-premium.php:1023
+#: templates/premium/main-tab-bulk-editor.php:637
 msgid "Simple product"
 msgstr ""
 
@@ -347,25 +347,25 @@ msgstr ""
 #: templates/premium/main-tab-bulk-editor.php:104
 #: templates/premium/main-tab-bulk-editor.php:123
 #: templates/premium/main-tab-bulk-editor.php:142
-#: templates/premium/main-tab-bulk-editor.php:228
-#: templates/premium/main-tab-bulk-editor.php:251
-#: templates/premium/main-tab-bulk-editor.php:284
-#: templates/premium/main-tab-bulk-editor.php:319
-#: templates/premium/main-tab-bulk-editor.php:382
-#: templates/premium/main-tab-bulk-editor.php:397
-#: templates/premium/main-tab-bulk-editor.php:415
-#: templates/premium/main-tab-bulk-editor.php:428
-#: templates/premium/main-tab-bulk-editor.php:508
-#: templates/premium/main-tab-bulk-editor.php:524
-#: templates/premium/main-tab-bulk-editor.php:540
-#: templates/premium/main-tab-bulk-editor.php:556
-#: templates/premium/main-tab-bulk-editor.php:604
-#: templates/premium/main-tab-bulk-editor.php:697
-#: templates/premium/main-tab-bulk-editor.php:714
-#: templates/premium/main-tab-bulk-editor.php:752
-#: templates/premium/main-tab-bulk-editor.php:770
-#: templates/premium/main-tab-bulk-editor.php:788
-#: templates/premium/main-tab-bulk-editor.php:805
+#: templates/premium/main-tab-bulk-editor.php:223
+#: templates/premium/main-tab-bulk-editor.php:246
+#: templates/premium/main-tab-bulk-editor.php:279
+#: templates/premium/main-tab-bulk-editor.php:314
+#: templates/premium/main-tab-bulk-editor.php:377
+#: templates/premium/main-tab-bulk-editor.php:392
+#: templates/premium/main-tab-bulk-editor.php:410
+#: templates/premium/main-tab-bulk-editor.php:423
+#: templates/premium/main-tab-bulk-editor.php:503
+#: templates/premium/main-tab-bulk-editor.php:519
+#: templates/premium/main-tab-bulk-editor.php:535
+#: templates/premium/main-tab-bulk-editor.php:551
+#: templates/premium/main-tab-bulk-editor.php:599
+#: templates/premium/main-tab-bulk-editor.php:692
+#: templates/premium/main-tab-bulk-editor.php:709
+#: templates/premium/main-tab-bulk-editor.php:747
+#: templates/premium/main-tab-bulk-editor.php:765
+#: templates/premium/main-tab-bulk-editor.php:783
+#: templates/premium/main-tab-bulk-editor.php:800
 msgid "Set new"
 msgstr ""
 
@@ -376,11 +376,11 @@ msgstr ""
 #: templates/premium/main-tab-bulk-editor.php:86
 #: templates/premium/main-tab-bulk-editor.php:105
 #: templates/premium/main-tab-bulk-editor.php:124
-#: templates/premium/main-tab-bulk-editor.php:285
-#: templates/premium/main-tab-bulk-editor.php:753
-#: templates/premium/main-tab-bulk-editor.php:771
-#: templates/premium/main-tab-bulk-editor.php:789
-#: templates/premium/main-tab-bulk-editor.php:806
+#: templates/premium/main-tab-bulk-editor.php:280
+#: templates/premium/main-tab-bulk-editor.php:748
+#: templates/premium/main-tab-bulk-editor.php:766
+#: templates/premium/main-tab-bulk-editor.php:784
+#: templates/premium/main-tab-bulk-editor.php:801
 msgid "Prepend"
 msgstr ""
 
@@ -391,11 +391,11 @@ msgstr ""
 #: templates/premium/main-tab-bulk-editor.php:87
 #: templates/premium/main-tab-bulk-editor.php:106
 #: templates/premium/main-tab-bulk-editor.php:125
-#: templates/premium/main-tab-bulk-editor.php:286
-#: templates/premium/main-tab-bulk-editor.php:754
-#: templates/premium/main-tab-bulk-editor.php:772
-#: templates/premium/main-tab-bulk-editor.php:790
-#: templates/premium/main-tab-bulk-editor.php:807
+#: templates/premium/main-tab-bulk-editor.php:281
+#: templates/premium/main-tab-bulk-editor.php:749
+#: templates/premium/main-tab-bulk-editor.php:767
+#: templates/premium/main-tab-bulk-editor.php:785
+#: templates/premium/main-tab-bulk-editor.php:802
 msgid "Append"
 msgstr ""
 
@@ -406,11 +406,11 @@ msgstr ""
 #: templates/premium/main-tab-bulk-editor.php:88
 #: templates/premium/main-tab-bulk-editor.php:107
 #: templates/premium/main-tab-bulk-editor.php:126
-#: templates/premium/main-tab-bulk-editor.php:287
-#: templates/premium/main-tab-bulk-editor.php:755
-#: templates/premium/main-tab-bulk-editor.php:773
-#: templates/premium/main-tab-bulk-editor.php:791
-#: templates/premium/main-tab-bulk-editor.php:808
+#: templates/premium/main-tab-bulk-editor.php:282
+#: templates/premium/main-tab-bulk-editor.php:750
+#: templates/premium/main-tab-bulk-editor.php:768
+#: templates/premium/main-tab-bulk-editor.php:786
+#: templates/premium/main-tab-bulk-editor.php:803
 msgid "Replace"
 msgstr ""
 
@@ -419,21 +419,21 @@ msgstr ""
 #: templates/premium/main-tab-bulk-editor.php:108
 #: templates/premium/main-tab-bulk-editor.php:127
 #: templates/premium/main-tab-bulk-editor.php:145
-#: templates/premium/main-tab-bulk-editor.php:229
-#: templates/premium/main-tab-bulk-editor.php:404
-#: templates/premium/main-tab-bulk-editor.php:416
-#: templates/premium/main-tab-bulk-editor.php:429
-#: templates/premium/main-tab-bulk-editor.php:513
-#: templates/premium/main-tab-bulk-editor.php:529
-#: templates/premium/main-tab-bulk-editor.php:545
-#: templates/premium/main-tab-bulk-editor.php:561
-#: templates/premium/main-tab-bulk-editor.php:609
-#: templates/premium/main-tab-bulk-editor.php:702
-#: templates/premium/main-tab-bulk-editor.php:719
-#: templates/premium/main-tab-bulk-editor.php:756
-#: templates/premium/main-tab-bulk-editor.php:774
-#: templates/premium/main-tab-bulk-editor.php:792
-#: templates/premium/main-tab-bulk-editor.php:809
+#: templates/premium/main-tab-bulk-editor.php:224
+#: templates/premium/main-tab-bulk-editor.php:399
+#: templates/premium/main-tab-bulk-editor.php:411
+#: templates/premium/main-tab-bulk-editor.php:424
+#: templates/premium/main-tab-bulk-editor.php:508
+#: templates/premium/main-tab-bulk-editor.php:524
+#: templates/premium/main-tab-bulk-editor.php:540
+#: templates/premium/main-tab-bulk-editor.php:556
+#: templates/premium/main-tab-bulk-editor.php:604
+#: templates/premium/main-tab-bulk-editor.php:697
+#: templates/premium/main-tab-bulk-editor.php:714
+#: templates/premium/main-tab-bulk-editor.php:751
+#: templates/premium/main-tab-bulk-editor.php:769
+#: templates/premium/main-tab-bulk-editor.php:787
+#: templates/premium/main-tab-bulk-editor.php:804
 #: templates/premium/main-tab-custom-input.php:38
 msgid "Delete"
 msgstr ""
@@ -446,16 +446,16 @@ msgstr ""
 #: includes/class.yith-wcbep-custom-taxonomies-manager.php:346
 #: includes/compatibility/class.yith-wcbep-badge-management-compatibility.php:127
 #: includes/compatibility/class.yith-wcbep-brands-add-on-compatibility.php:246
-#: templates/premium/main-tab-bulk-editor.php:249
-#: templates/premium/main-tab-bulk-editor.php:317
+#: templates/premium/main-tab-bulk-editor.php:244
+#: templates/premium/main-tab-bulk-editor.php:312
 msgid "Add"
 msgstr ""
 
 #: includes/class.yith-wcbep-custom-taxonomies-manager.php:347
 #: includes/compatibility/class.yith-wcbep-badge-management-compatibility.php:128
 #: includes/compatibility/class.yith-wcbep-brands-add-on-compatibility.php:247
-#: templates/premium/main-tab-bulk-editor.php:250
-#: templates/premium/main-tab-bulk-editor.php:318
+#: templates/premium/main-tab-bulk-editor.php:245
+#: templates/premium/main-tab-bulk-editor.php:313
 msgid "Remove"
 msgstr ""
 
@@ -525,88 +525,68 @@ msgstr ""
 msgid "Remote file is too large, limit is %s"
 msgstr ""
 
-#: includes/class.yith-wcbep-list-table-premium.php:885
-#: templates/premium/main-tab-bulk-editor.php:442
+#: includes/class.yith-wcbep-list-table-premium.php:921
+#: templates/premium/main-tab-bulk-editor.php:437
 msgid "Taxable"
 msgstr ""
 
-#: includes/class.yith-wcbep-list-table-premium.php:886
-#: templates/premium/main-tab-bulk-editor.php:443
+#: includes/class.yith-wcbep-list-table-premium.php:922
+#: templates/premium/main-tab-bulk-editor.php:438
 msgid "Shipping only"
 msgstr ""
 
-#: includes/class.yith-wcbep-list-table-premium.php:897
-#: templates/premium/main-tab-bulk-editor.php:459
+#: includes/class.yith-wcbep-list-table-premium.php:933
+#: templates/premium/main-tab-bulk-editor.php:454
 msgid "Standard"
 msgstr ""
 
-#: includes/class.yith-wcbep-list-table-premium.php:916
-#: templates/premium/main-tab-bulk-editor.php:622
+#: includes/class.yith-wcbep-list-table-premium.php:952
+#: templates/premium/main-tab-bulk-editor.php:617
 msgid "Do not allow"
 msgstr ""
 
-#: includes/class.yith-wcbep-list-table-premium.php:917
-#: templates/premium/main-tab-bulk-editor.php:623
+#: includes/class.yith-wcbep-list-table-premium.php:953
+#: templates/premium/main-tab-bulk-editor.php:618
 msgid "Allow, but notify customer"
 msgstr ""
 
-#: includes/class.yith-wcbep-list-table-premium.php:918
-#: templates/premium/main-tab-bulk-editor.php:624
+#: includes/class.yith-wcbep-list-table-premium.php:954
+#: templates/premium/main-tab-bulk-editor.php:619
 msgid "Allow"
 msgstr ""
 
-#: includes/class.yith-wcbep-list-table-premium.php:931
-#: templates/premium/main-tab-bulk-editor.php:484
+#: includes/class.yith-wcbep-list-table-premium.php:967
+#: templates/premium/main-tab-bulk-editor.php:479
 #: templates/premium/main-tab-filters-and-table.php:296
 msgid "No shipping class"
 msgstr ""
 
-#: includes/class.yith-wcbep-list-table-premium.php:956
-#: templates/premium/main-tab-bulk-editor.php:200
-msgid "Catalog/search"
-msgstr ""
-
-#: includes/class.yith-wcbep-list-table-premium.php:957
-#: templates/premium/main-tab-bulk-editor.php:201
-msgid "Catalog"
-msgstr ""
-
-#: includes/class.yith-wcbep-list-table-premium.php:958
-#: templates/premium/main-tab-bulk-editor.php:202
-msgid "Search"
-msgstr ""
-
-#: includes/class.yith-wcbep-list-table-premium.php:959
-#: templates/premium/main-tab-bulk-editor.php:203
-msgid "Hidden"
-msgstr ""
-
-#: includes/class.yith-wcbep-list-table-premium.php:973
-#: templates/premium/main-tab-bulk-editor.php:734
+#: includes/class.yith-wcbep-list-table-premium.php:1004
+#: templates/premium/main-tab-bulk-editor.php:729
 msgid "Standard Product"
 msgstr ""
 
-#: includes/class.yith-wcbep-list-table-premium.php:974
-#: templates/premium/main-tab-bulk-editor.php:735
+#: includes/class.yith-wcbep-list-table-premium.php:1005
+#: templates/premium/main-tab-bulk-editor.php:730
 msgid "Application/Software"
 msgstr ""
 
-#: includes/class.yith-wcbep-list-table-premium.php:975
-#: templates/premium/main-tab-bulk-editor.php:736
+#: includes/class.yith-wcbep-list-table-premium.php:1006
+#: templates/premium/main-tab-bulk-editor.php:731
 msgid "Music"
 msgstr ""
 
-#: includes/class.yith-wcbep-list-table-premium.php:988
+#: includes/class.yith-wcbep-list-table-premium.php:1019
 msgid "Variation"
 msgstr ""
 
-#: includes/class.yith-wcbep-list-table-premium.php:1211
+#: includes/class.yith-wcbep-list-table-premium.php:1242
 #: includes/class.yith-wcbep-list-table.php:290
 #: templates/premium/main-tab-columns-settings.php:33
 msgid "Select All"
 msgstr ""
 
-#: includes/class.yith-wcbep-list-table-premium.php:1316
+#: includes/class.yith-wcbep-list-table-premium.php:1347
 #: includes/class.yith-wcbep-list-table.php:378
 msgid "1 item"
 msgid_plural "%s items"
@@ -651,24 +631,24 @@ msgstr ""
 #: includes/compatibility/class.yith-wcbep-deposits-compatibility.php:68
 #: templates/premium/main-tab-bulk-editor.php:157
 #: templates/premium/main-tab-bulk-editor.php:169
-#: templates/premium/main-tab-bulk-editor.php:347
-#: templates/premium/main-tab-bulk-editor.php:360
-#: templates/premium/main-tab-bulk-editor.php:578
-#: templates/premium/main-tab-bulk-editor.php:662
-#: templates/premium/main-tab-bulk-editor.php:674
-#: templates/premium/main-tab-bulk-editor.php:686
+#: templates/premium/main-tab-bulk-editor.php:342
+#: templates/premium/main-tab-bulk-editor.php:355
+#: templates/premium/main-tab-bulk-editor.php:573
+#: templates/premium/main-tab-bulk-editor.php:657
+#: templates/premium/main-tab-bulk-editor.php:669
+#: templates/premium/main-tab-bulk-editor.php:681
 msgid "Yes"
 msgstr ""
 
 #: includes/compatibility/class.yith-wcbep-deposits-compatibility.php:69
 #: templates/premium/main-tab-bulk-editor.php:158
 #: templates/premium/main-tab-bulk-editor.php:170
-#: templates/premium/main-tab-bulk-editor.php:348
-#: templates/premium/main-tab-bulk-editor.php:361
-#: templates/premium/main-tab-bulk-editor.php:579
-#: templates/premium/main-tab-bulk-editor.php:663
-#: templates/premium/main-tab-bulk-editor.php:675
-#: templates/premium/main-tab-bulk-editor.php:687
+#: templates/premium/main-tab-bulk-editor.php:343
+#: templates/premium/main-tab-bulk-editor.php:356
+#: templates/premium/main-tab-bulk-editor.php:574
+#: templates/premium/main-tab-bulk-editor.php:658
+#: templates/premium/main-tab-bulk-editor.php:670
+#: templates/premium/main-tab-bulk-editor.php:682
 msgid "No"
 msgstr ""
 
@@ -723,6 +703,19 @@ msgstr ""
 msgid "If enabled, the plugin uses Regular Expressions when searching for texts."
 msgstr ""
 
+#: plugin-options/settings-options.php:34
+msgid "Use Light Query"
+msgstr ""
+
+#: plugin-options/settings-options.php:38
+msgid ""
+"If enabled, the plugin uses a light query to retrieve products, so it "
+"improves your website performance. However, by enabling this option you "
+"CANNOT use advanced functionalities: for example, filtering variable "
+"products by price will not work. Please note: use it only if you have a "
+"huge amount of products."
+msgstr ""
+
 #: templates/main-tab.php:10
 #: templates/premium/main-tab-filters-and-table.php:15
 msgid "Filters"
@@ -771,29 +764,29 @@ msgstr ""
 
 #: templates/main-tab.php:117 templates/main-tab.php:132
 #: templates/premium/main-tab-bulk-editor.php:143
-#: templates/premium/main-tab-bulk-editor.php:383
-#: templates/premium/main-tab-bulk-editor.php:398
-#: templates/premium/main-tab-bulk-editor.php:509
-#: templates/premium/main-tab-bulk-editor.php:525
-#: templates/premium/main-tab-bulk-editor.php:541
-#: templates/premium/main-tab-bulk-editor.php:557
-#: templates/premium/main-tab-bulk-editor.php:605
-#: templates/premium/main-tab-bulk-editor.php:698
-#: templates/premium/main-tab-bulk-editor.php:715
+#: templates/premium/main-tab-bulk-editor.php:378
+#: templates/premium/main-tab-bulk-editor.php:393
+#: templates/premium/main-tab-bulk-editor.php:504
+#: templates/premium/main-tab-bulk-editor.php:520
+#: templates/premium/main-tab-bulk-editor.php:536
+#: templates/premium/main-tab-bulk-editor.php:552
+#: templates/premium/main-tab-bulk-editor.php:600
+#: templates/premium/main-tab-bulk-editor.php:693
+#: templates/premium/main-tab-bulk-editor.php:710
 msgid "Increase by value"
 msgstr ""
 
 #: templates/main-tab.php:118 templates/main-tab.php:133
 #: templates/premium/main-tab-bulk-editor.php:144
-#: templates/premium/main-tab-bulk-editor.php:384
-#: templates/premium/main-tab-bulk-editor.php:399
-#: templates/premium/main-tab-bulk-editor.php:510
-#: templates/premium/main-tab-bulk-editor.php:526
-#: templates/premium/main-tab-bulk-editor.php:542
-#: templates/premium/main-tab-bulk-editor.php:558
-#: templates/premium/main-tab-bulk-editor.php:606
-#: templates/premium/main-tab-bulk-editor.php:699
-#: templates/premium/main-tab-bulk-editor.php:716
+#: templates/premium/main-tab-bulk-editor.php:379
+#: templates/premium/main-tab-bulk-editor.php:394
+#: templates/premium/main-tab-bulk-editor.php:505
+#: templates/premium/main-tab-bulk-editor.php:521
+#: templates/premium/main-tab-bulk-editor.php:537
+#: templates/premium/main-tab-bulk-editor.php:553
+#: templates/premium/main-tab-bulk-editor.php:601
+#: templates/premium/main-tab-bulk-editor.php:694
+#: templates/premium/main-tab-bulk-editor.php:711
 msgid "Decrease by value"
 msgstr ""
 
@@ -805,43 +798,43 @@ msgstr ""
 msgid "Decrease by percentage"
 msgstr ""
 
-#: templates/main-tab.php:134 templates/premium/main-tab-bulk-editor.php:385
-#: templates/premium/main-tab-bulk-editor.php:400
-#: templates/premium/main-tab-bulk-editor.php:511
-#: templates/premium/main-tab-bulk-editor.php:527
-#: templates/premium/main-tab-bulk-editor.php:543
-#: templates/premium/main-tab-bulk-editor.php:559
-#: templates/premium/main-tab-bulk-editor.php:607
-#: templates/premium/main-tab-bulk-editor.php:700
-#: templates/premium/main-tab-bulk-editor.php:717
+#: templates/main-tab.php:134 templates/premium/main-tab-bulk-editor.php:380
+#: templates/premium/main-tab-bulk-editor.php:395
+#: templates/premium/main-tab-bulk-editor.php:506
+#: templates/premium/main-tab-bulk-editor.php:522
+#: templates/premium/main-tab-bulk-editor.php:538
+#: templates/premium/main-tab-bulk-editor.php:554
+#: templates/premium/main-tab-bulk-editor.php:602
+#: templates/premium/main-tab-bulk-editor.php:695
+#: templates/premium/main-tab-bulk-editor.php:712
 msgid "Increase by %"
 msgstr ""
 
-#: templates/main-tab.php:135 templates/premium/main-tab-bulk-editor.php:386
-#: templates/premium/main-tab-bulk-editor.php:401
-#: templates/premium/main-tab-bulk-editor.php:512
-#: templates/premium/main-tab-bulk-editor.php:528
-#: templates/premium/main-tab-bulk-editor.php:544
-#: templates/premium/main-tab-bulk-editor.php:560
-#: templates/premium/main-tab-bulk-editor.php:608
-#: templates/premium/main-tab-bulk-editor.php:701
-#: templates/premium/main-tab-bulk-editor.php:718
+#: templates/main-tab.php:135 templates/premium/main-tab-bulk-editor.php:381
+#: templates/premium/main-tab-bulk-editor.php:396
+#: templates/premium/main-tab-bulk-editor.php:507
+#: templates/premium/main-tab-bulk-editor.php:523
+#: templates/premium/main-tab-bulk-editor.php:539
+#: templates/premium/main-tab-bulk-editor.php:555
+#: templates/premium/main-tab-bulk-editor.php:603
+#: templates/premium/main-tab-bulk-editor.php:696
+#: templates/premium/main-tab-bulk-editor.php:713
 msgid "Decrease by %"
 msgstr ""
 
-#: templates/main-tab.php:136 templates/premium/main-tab-bulk-editor.php:402
+#: templates/main-tab.php:136 templates/premium/main-tab-bulk-editor.php:397
 msgid "Decrease by value from regular"
 msgstr ""
 
-#: templates/main-tab.php:137 templates/premium/main-tab-bulk-editor.php:403
+#: templates/main-tab.php:137 templates/premium/main-tab-bulk-editor.php:398
 msgid "Decrease by % from regular"
 msgstr ""
 
-#: templates/main-tab.php:146 templates/premium/main-tab-bulk-editor.php:834
+#: templates/main-tab.php:146 templates/premium/main-tab-bulk-editor.php:829
 msgid "Apply"
 msgstr ""
 
-#: templates/main-tab.php:147 templates/premium/main-tab-bulk-editor.php:836
+#: templates/main-tab.php:147 templates/premium/main-tab-bulk-editor.php:831
 #: templates/premium/main-tab-custom-input.php:20
 #: templates/premium/main-tab-custom-input.php:47
 #: templates/premium/main-tab-custom-input.php:57
@@ -874,25 +867,25 @@ msgstr ""
 msgid "Type"
 msgstr ""
 
-#: templates/premium/main-tab-bulk-editor.php:233
+#: templates/premium/main-tab-bulk-editor.php:228
 msgid "Choose Image"
 msgstr ""
 
-#: templates/premium/main-tab-bulk-editor.php:288
+#: templates/premium/main-tab-bulk-editor.php:283
 msgid "Delete all"
 msgstr ""
 
-#: templates/premium/main-tab-bulk-editor.php:341
+#: templates/premium/main-tab-bulk-editor.php:336
 #: templates/premium/main-tab-custom-input.php:114
 msgid "is visible"
 msgstr ""
 
-#: templates/premium/main-tab-bulk-editor.php:354
+#: templates/premium/main-tab-bulk-editor.php:349
 #: templates/premium/main-tab-custom-input.php:117
 msgid "used for variations"
 msgstr ""
 
-#: templates/premium/main-tab-bulk-editor.php:830
+#: templates/premium/main-tab-bulk-editor.php:825
 msgid "Please note: Bulk Editor edits only enabled columns"
 msgstr ""
 
@@ -1024,8 +1017,8 @@ msgid ""
 "e-commerce shop on <strong>YITH</strong></a>"
 msgstr ""
 
-#: includes/class.yith-wcbep-list-table-premium.php:887
-#: templates/premium/main-tab-bulk-editor.php:444
+#: includes/class.yith-wcbep-list-table-premium.php:923
+#: templates/premium/main-tab-bulk-editor.php:439
 msgctxt "Tax status"
 msgid "None"
 msgstr ""
