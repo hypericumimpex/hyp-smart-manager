@@ -227,7 +227,6 @@ if ( !class_exists( 'YITH_WCBEP_List_Table_Premium' ) ) {
          *
          * @since  3.1.0
          * @access public
-         *
          * @param object $item The current item
          */
         public function single_row( $item ) {
@@ -283,6 +282,7 @@ if ( !class_exists( 'YITH_WCBEP_List_Table_Premium' ) ) {
             $f_stock_qty_val            = isset( $_REQUEST[ 'f_stock_qty_value' ] ) ? $_REQUEST[ 'f_stock_qty_value' ] : null;
             $f_stock_status             = isset( $_REQUEST[ 'f_stock_status' ] ) ? $_REQUEST[ 'f_stock_status' ] : null;
             $f_product_type             = !empty( $_REQUEST[ 'f_product_type' ] ) ? $_REQUEST[ 'f_product_type' ] : false;
+            $f_visibility               = !empty( $_REQUEST[ 'f_visibility' ] ) ? $_REQUEST[ 'f_visibility' ] : false;
             $f_status                   = !empty( $_REQUEST[ 'f_status' ] ) ? $_REQUEST[ 'f_status' ] : false;
             $f_shipping_class           = !empty( $_REQUEST[ 'f_shipping_class' ] ) ? $_REQUEST[ 'f_shipping_class' ] : false;
 
@@ -608,6 +608,46 @@ if ( !class_exists( 'YITH_WCBEP_List_Table_Premium' ) ) {
                     }
 
                     $tax_query[] = $shipping_class_args;
+                }
+
+                // Filter Catalog Visibility
+                if ( !empty( $f_visibility ) ) {
+                    $included_terms = array();
+                    $excluded_terms = array();
+                    switch ( $f_visibility ) {
+                        case 'hidden':
+                            $included_terms = array( 'exclude-from-search', 'exclude-from-catalog' );
+                            break;
+                        case 'catalog':
+                            $included_terms = array( 'exclude-from-search' );
+                            $excluded_terms = array( 'exclude-from-catalog' );
+                            break;
+                        case 'search':
+                            $included_terms = array( 'exclude-from-catalog' );
+                            $excluded_terms = array( 'exclude-from-search' );
+                            break;
+                        default:
+                            $excluded_terms = array( 'exclude-from-search', 'exclude-from-catalog' );
+                            break;
+                    }
+
+                    if ( $included_terms ) {
+                        $tax_query[] = array(
+                            'taxonomy' => 'product_visibility',
+                            'field'    => 'name',
+                            'terms'    => $included_terms,
+                            'operator' => 'AND'
+                        );
+                    }
+
+                    if ( $excluded_terms ) {
+                        $tax_query[] = array(
+                            'taxonomy' => 'product_visibility',
+                            'field'    => 'name',
+                            'terms'    => $excluded_terms,
+                            'operator' => 'NOT IN'
+                        );
+                    }
                 }
 
                 // Filter Brands

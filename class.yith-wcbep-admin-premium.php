@@ -21,8 +21,6 @@ if ( !class_exists( 'YITH_WCBEP_Admin_Premium' ) ) {
      */
     class YITH_WCBEP_Admin_Premium extends YITH_WCBEP_Admin {
 
-        public $importer = null;
-
         /**
          * Constructor
          *
@@ -40,88 +38,38 @@ if ( !class_exists( 'YITH_WCBEP_Admin_Premium' ) ) {
             add_action( 'wp_ajax_yith_wcbep_get_image_gallery_uploader', array( $this, 'get_image_gallery_uploader' ) );
             add_action( 'wp_ajax_yith_wcbep_bulk_delete_products', array( $this, 'delete_products' ) );
 
-            add_action( 'wp_ajax_yith_wcbep_import', array( $this, 'import' ) );
-
             add_filter( 'yith_wcbep_settings_admin_tabs', array( $this, 'add_premium_settings_tabs' ) );
 
-            add_action( 'yith_wcbep_import_tab', array( $this, 'render_import_tab' ) );
             add_action( 'yith_wcbep_enabled_columns_tab', array( $this, 'render_enabled_columns_tab' ) );
 
             // register plugin to licence/update system
             add_action( 'wp_loaded', array( $this, 'register_plugin_for_activation' ), 99 );
             add_action( 'admin_init', array( $this, 'register_plugin_for_updates' ) );
 
-            if ( isset( $_GET[ 'yith_wcbep_action' ] ) && 'export' === $_GET[ 'yith_wcbep_action' ] ) {
-                add_action( 'init', array( $this, 'download_exported' ), 999 );
-            }
+            add_filter( 'woocommerce_product_export_product_query_args', array( $this, 'filter_product_ids_to_export' ) );
         }
 
-        public function download_exported() {
-            if ( !current_user_can( 'export' ) )
-                wp_die( __( 'You do not have sufficient permissions to export the content of this site.' ) );
-
-            if ( isset( $_POST[ 'export_ids' ] ) ) {
-                $ids      = json_decode( $_POST[ 'export_ids' ] );
-                $exporter = new YITH_WCBEP_Exporter();
-                $exporter->export_products( $ids );
-                die();
+        public function filter_product_ids_to_export( $args ) {
+            $form = array();
+            if ( !empty( $_REQUEST[ 'form' ] ) ) {
+                parse_str( $_REQUEST[ 'form' ], $form );
             }
+            if ( !empty( $form[ 'yith-wcbep-selected-products' ] ) ) {
+                $ids = json_decode( $form[ 'yith-wcbep-selected-products' ] );
+                $args[ 'include' ] = $ids;
+            }
+            return $args;
         }
 
         public function add_premium_settings_tabs( $tabs ) {
-            $tabs[ 'import' ]          = __( 'Import', 'yith-woocommerce-bulk-product-editing' );
             $tabs[ 'enabled-columns' ] = __( 'Enabled Columns', 'yith-woocommerce-bulk-product-editing' );
             $tabs[ 'settings' ]        = __( 'Settings', 'yith-woocommerce-bulk-product-editing' );
 
             return $tabs;
         }
 
-        public function render_import_tab() {
-            ?>
-
-            <h2><?php _e( 'Import Products', 'yith-woocommerce-bulk-product-editing' ) ?></h2>
-            <form id="yith-wcbep-importer-form" method="post" enctype="multipart/form-data"
-                  action="admin.php?page=yith_wcbep_panel&tab=import">
-                <input id="yith-wcbep-importer-upload-url" name="file_url" type="file"
-                       placeholder="<?php _e( 'File URL', 'yith-woocommerce-bulk-product-editing' ); ?>">
-                <input type="submit" class="button button-primary button-large"
-                       value="<?php _e( 'Import', 'yith-woocommerce-bulk-product-editing' ) ?>">
-            </form>
-            <?php
-            if ( !empty( $_FILES ) && isset( $_FILES[ 'file_url' ][ 'tmp_name' ] ) && !empty( $_FILES[ 'file_url' ][ 'tmp_name' ] ) ) {
-                $file_url = $_FILES[ 'file_url' ][ 'tmp_name' ];
-                ?>
-                <input type="hidden" id="yith-wcbep-imported-file"
-                       value="<?php echo $_FILES[ 'file_url' ][ 'tmp_name' ]; ?>">
-                <div id="yith-wcbep-message" class="updated notice below-h2">
-                    <p><?php _e( 'Importing...', 'yith-woocommerce-bulk-product-editing' ) ?></p>
-                </div>
-                <?php
-                $importer = new YITH_WCBEP_Importer();
-                ob_start();
-                $importer->import( $file_url );
-                $data = ob_get_clean();
-                echo $data;
-            }
-        }
-
         public function render_enabled_columns_tab() {
             wc_get_template( 'enabled-columns-tab.php', array(), '', YITH_WCBEP_TEMPLATE_PATH . '/premium/panel/' );
-        }
-
-        /**
-         * Import products [AJAX]
-         *
-         * @access public
-         * @since  1.0.0
-         */
-        public function import() {
-            if ( isset( $_POST[ 'file_url' ] ) ) {
-                $file     = $_POST[ 'file_url' ];
-                $importer = new YITH_WCBEP_Importer();
-                $importer->import( $file );
-            }
-            die();
         }
 
 
@@ -221,7 +169,6 @@ if ( !class_exists( 'YITH_WCBEP_Admin_Premium' ) ) {
             wc_get_template( 'main-tab-filters-and-table.php', $args, '', $premium_path );
             wc_get_template( 'main-tab-bulk-editor.php', $args, '', $premium_path );
             wc_get_template( 'main-tab-columns-settings.php', $args, '', $premium_path );
-            wc_get_template( 'main-tab-importer.php', $args, '', $premium_path );
         }
 
         /**
@@ -867,7 +814,6 @@ if ( !class_exists( 'YITH_WCBEP_Admin_Premium' ) ) {
 
                     /**
                      * WPML Compatilbility
-                     *
                      * I changed the pagenow to post.php to use
                      * standard WPML method WCML_Products->sync_post_action
                      */

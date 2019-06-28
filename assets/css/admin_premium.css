@@ -392,44 +392,6 @@ div#yith-wcbep-columns-settings-wrapper {
     box-sizing : border-box;
 }
 
-div#yith-wcbep-importer-wrapper {
-    display            : none;
-    width              : 400px;
-    background         : #f1f1f1;
-    z-index            : 9999;
-    box-sizing         : border-box;
-    box-shadow         : 0px -2px 16px 2px #b9b9b9;
-    -webkit-box-shadow : 0px -2px 16px 2px #b9b9b9;
-    -moz-box-shadow    : 0px -2px 16px 2px #b9b9b9;
-    -o-box-shadow      : 0px -2px 16px 2px #b9b9b9;
-    -ms-box-shadow     : 0px -2px 16px 2px #b9b9b9;
-    padding            : 20px 20px 10px 20px;
-}
-
-div#yith-wcbep-importer-wrapper::before {
-    content       : ' ';
-    width         : 0px;
-    height        : 0px;
-    border-bottom : 10px solid #f1f1f1;
-    border-left   : 10px solid transparent;
-    border-right  : 10px solid transparent;
-    position      : absolute;
-    top           : -10px;
-    left          : 195px;
-}
-
-div#yith-wcbep-importer-content {
-    text-align : center;
-    margin-top : 20px;
-}
-
-#yith-wcbep-importer-button-wrap {
-    margin-top  : 30px;
-    text-align  : center;
-    border-top  : 1px solid #ccc;
-    padding-top : 10px;
-}
-
 #yith-wcbep-bulk-editor-container {
     font-family   : "Open Sans", sans-serif !important;
     padding       : 30px 30px 90px 30px;
@@ -734,41 +696,20 @@ td.yith-wcbep-bulk-form-content-col textarea.yith-wcbep-minifield {
 }
 
 #yith-wcbep-actions-button-wrapper {
-    padding            : 10px 10px 7px 10px;
-    background         : #e8e8e8 none repeat scroll 0% 0%;
-    box-shadow         : 0px 0px 4px 0px #ccc inset;
-    -webkit-box-shadow : 0px 0px 4px 0px #ccc inset;
-    -moz-box-shadow    : 0px 0px 4px 0px #ccc inset;
-    -o-box-shadow      : 0px 0px 4px 0px #ccc inset;
-    -ms-box-shadow     : 0px 0px 4px 0px #ccc inset;
-    margin-bottom      : 20px;
+    padding       : 15px;
+    background    : #fff;
+    margin-bottom : 20px;
+}
+
+#yith-wcbep-actions-button-wrapper > * {
+    display        : inline-block;
+    vertical-align : top;
 }
 
 span.yith-wcbep-white-space {
-    width        : 1px;
-    display      : inline-block;
-    height       : 30px;
-    margin       : 0px 10px;
-    background   : rgb(188, 188, 188) none repeat scroll 0% 0%;
-    border-right : 1px solid rgb(255, 255, 255);
-}
-
-.yith-wcbep-confirm-btn {
-    border-color : #8f0000 !important;
-    background   : #d00 none repeat scroll 0% 0% !important;
-    box-shadow   : 0px 1px 0px #e17171 inset, 0px 1px 0px rgba(0, 0, 0, 0.08) !important;
-    color        : #fff !important;
-    font-weight  : 600 !important;
-}
-
-/*
-    Importer
-*/
-form#yith-wcbep-importer-form {
-    padding    : 20px;
-    margin     : 15px 0;
-    background : #fff;
-    box-shadow : 1px 1px 1px 0px #ddd;
+    width   : 25px;
+    display : inline-block;
+    height  : 30px;
 }
 
 #yith-wcbep-percentual-container {
@@ -1066,4 +1007,132 @@ form#yith-wcbep-filter-form > table > tbody > tr > td {
 .yith-wcbep-bulk-form-attributes-visible-row,
 .yith-wcbep-bulk-form-attributes-used-for-variation-row {
     display : none;
+}
+
+#yith-wcbep-export-form.woocommerce-exporter {
+    display        : inline-block;
+    vertical-align : top;
+}
+
+#yith-wcbep-export-form.woocommerce-exporter progress, #yith-wcbep-export-form.woocommerce-exporter .spinner {
+    display : none;
+}
+
+#yith-wcbep-export-form progress {
+    height             : 32px;
+    width              : 130px;
+    margin             : 0;
+    display            : block;
+    -webkit-appearance : none;
+    border             : none;
+    display            : none;
+    background         : #f5f5f5;
+    border             : 2px solid #eee;
+    border-radius      : 4px;
+    padding            : 0;
+    box-shadow         : 0 1px 0 0 rgba(255, 255, 255, .2)
+}
+
+#yith-wcbep-export-form progress::-webkit-progress-bar {
+    background    : transparent none;
+    border        : 0;
+    border-radius : 4px;
+    padding       : 0;
+    box-shadow    : none
+}
+
+#yith-wcbep-export-form progress::-webkit-progress-value {
+    border-radius      : 3px;
+    box-shadow         : inset 0 1px 1px 0 rgba(255, 255, 255, .4);
+    background         : #a46497;
+    background         : -webkit-linear-gradient(top, #a46497, #66405f), #a46497;
+    background         : linear-gradient(top, #a46497, #66405f), #a46497;
+    -webkit-transition : width 1s ease;
+    transition         : width 1s ease
+}
+
+#yith-wcbep-export-form progress::-moz-progress-bar {
+    border-radius      : 3px;
+    box-shadow         : inset 0 1px 1px 0 rgba(255, 255, 255, .4);
+    background         : #a46497;
+    background         : linear-gradient(top, #a46497, #66405f), #a46497;
+    -webkit-transition : width 1s ease;
+    transition         : width 1s ease
+}
+
+#yith-wcbep-export-form progress::-ms-fill {
+    border-radius      : 3px;
+    box-shadow         : inset 0 1px 1px 0 rgba(255, 255, 255, .4);
+    background         : #a46497;
+    background         : linear-gradient(to bottom, #a46497, #66405f), #a46497;
+    -webkit-transition : width 1s ease;
+    transition         : width 1s ease
+}
+
+#yith-wcbep-export-form.woocommerce-exporter__exporting progress, #yith-wcbep-export-form.woocommerce-exporter__exporting .spinner {
+    display : inline-block;
+}
+
+#yith-wcbep-export-form.woocommerce-exporter__exporting #yith-wcbep-export-form-btn {
+    display : none;
+}
+
+/**
+ * Buttons
+ */
+
+.yith-wcbep-admin-button,
+.yith-wcbep-admin-button:disabled {
+    display               : inline-block;
+    padding               : 11px 22px;
+    background            : #0077a8;
+    border-radius         : 4px;
+    border                : none;
+    text-transform        : uppercase;
+    font-size             : 12px;
+    cursor                : pointer;
+    font-weight           : 600;
+    text-decoration       : none;
+    color                 : #fff !important;
+    margin                : 0 7px 0 0;
+    box-shadow            : none;
+    line-height           : 100%;
+    white-space           : nowrap;
+    -webkit-touch-callout : none;
+    -webkit-user-select   : none;
+    -khtml-user-select    : none;
+    -moz-user-select      : none;
+    -ms-user-select       : none;
+    user-select           : none;
+    transition            : all .2s ease-in-out;
+}
+
+.yith-wcbep-admin-button:hover, .yith-wcbep-admin-button:active, .yith-wcbep-admin-button:focus {
+    background : #41add4;
+    outline    : none;
+    box-shadow : none;
+}
+
+.yith-wcbep-admin-button:disabled {
+    opacity : .3;
+    cursor  : not-allowed;
+}
+
+.yith-wcbep-admin-button.yith-wcbep-admin-button--small {
+    padding : 8px 14px;
+}
+
+.yith-wcbep-admin-button.yith-wcbep-admin-button--secondary {
+    background : #fff;
+    color      : #353a40 !important;
+    box-shadow : 0 0 0 1px rgba(0, 0, 0, .13) inset;
+}
+
+.yith-wcbep-admin-button.yith-wcbep-admin-button--secondary:hover {
+    color      : #983b87 !important;
+    box-shadow : 0 0 0 1px rgba(0, 0, 0, .13) inset, 0 7px 7px -7px rgba(0, 0, 0, 0.2);
+}
+
+.yith-wcbep-confirm-btn {
+    background : #ffeffe !important;
 }

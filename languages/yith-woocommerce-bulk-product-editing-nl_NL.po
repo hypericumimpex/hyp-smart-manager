@@ -4,15 +4,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YITH WooCommerce Bulk Product Editing Premium\n"
 "Report-Msgid-Bugs-To: Your Inspiration Themes <plugins@yithemes.com>\n"
-"POT-Creation-Date: 2019-01-28 09:42:15+00:00\n"
-"PO-Revision-Date: 2018-12-18 14:16+0000\n"
+"POT-Creation-Date: 2019-04-09 14:24:42+00:00\n"
+"PO-Revision-Date: 2019-02-06 19:07+0000\n"
 "Last-Translator: \n"
 "Language-Team: Your Inspiration Themes <info@yithemes.com>\n"
 "Language: nl_NL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.12\n"
+"X-Generator: Poedit 2.1.1\n"
 "X-Poedit-KeywordsList: __;_e;_x:1,2c;_ex:1,2c;_n:1,2;_nx:1,2,4c;_n_noop:1,2;"
 "_nx_noop:1,2,3c;esc_attr__;esc_html__;esc_attr_e;esc_html_e;esc_attr_x:1,2c;"
 "esc_html_x:1,2c\n"
@@ -23,46 +23,22 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: plugin-fw\n"
 
-#: class.yith-wcbep-admin-premium.php:61 templates/export.php:11
-msgid ""
-"You do not have sufficient permissions to export the content of this site."
-msgstr "U heeft onvoldoende rechten om de inhoud van deze site te exporteren."
-
-#: class.yith-wcbep-admin-premium.php:72 class.yith-wcbep-admin-premium.php:88
-#: templates/premium/main-tab-importer.php:15
-msgid "Import"
-msgstr "Importeren"
-
-#: class.yith-wcbep-admin-premium.php:73
+#: class.yith-wcbep-admin-premium.php:65
 #: templates/premium/panel/enabled-columns-tab.php:7
 msgid "Enabled Columns"
 msgstr "Kolummen inschakelen"
 
-#: class.yith-wcbep-admin-premium.php:74
+#: class.yith-wcbep-admin-premium.php:66
 msgid "Settings"
 msgstr "Instellingen"
 
-#: class.yith-wcbep-admin-premium.php:82
-#: templates/premium/main-tab-importer.php:7
-msgid "Import Products"
-msgstr "Producten importeren"
-
-#: class.yith-wcbep-admin-premium.php:86
-#: templates/premium/main-tab-importer.php:10
-msgid "File URL"
-msgstr "Bestand URL"
-
-#: class.yith-wcbep-admin-premium.php:97
-msgid "Importing..."
-msgstr "Importeren..."
-
-#: class.yith-wcbep-admin-premium.php:144
+#: class.yith-wcbep-admin-premium.php:92
 msgid "%s product deleted"
 msgid_plural "%s products deleted"
 msgstr[0] "%s product verwijderd"
 msgstr[1] "%s producten verwijderd"
 
-#: class.yith-wcbep-admin-premium.php:834
+#: class.yith-wcbep-admin-premium.php:781
 msgid ""
 "The downloadable file %s cannot be used as it does not have an allowed file "
 "type. Allowed types include: %s"
@@ -70,7 +46,7 @@ msgstr ""
 "Het gedownloade bestand %s kan niet worden gebruikt, aangezien het geen "
 "toegestaan bestandstype heeft. Toegestane bestandstypes bevatten: %s"
 
-#: class.yith-wcbep-admin-premium.php:841
+#: class.yith-wcbep-admin-premium.php:788
 msgid ""
 "The downloadable file %s cannot be used as it does not exist on the server."
 msgstr ""
@@ -130,30 +106,30 @@ msgid "Confirm Deletion [Selected Products: %s]"
 msgstr "Bevestig verwijdering [Geselecteerde producten: %s]"
 
 #: class.yith-wcbep-admin.php:330
-#: templates/premium/main-tab-filters-and-table.php:384
+#: templates/premium/main-tab-filters-and-table.php:407
 msgid "Delete Selected"
 msgstr "Verwijder selectie"
 
 #: functions.yith-wcbep-premium.php:130
-#: includes/class.yith-wcbep-list-table-premium.php:1024
+#: includes/class.yith-wcbep-list-table-premium.php:1064
 #: templates/premium/main-tab-bulk-editor.php:638
 msgid "Grouped product"
 msgstr "Gegroupeerd product"
 
 #: functions.yith-wcbep-premium.php:133
-#: includes/class.yith-wcbep-list-table-premium.php:1025
+#: includes/class.yith-wcbep-list-table-premium.php:1065
 #: templates/premium/main-tab-bulk-editor.php:639
 msgid "External/Affiliate product"
 msgstr "Extern/verwant product"
 
 #: functions.yith-wcbep-premium.php:136
-#: includes/class.yith-wcbep-list-table-premium.php:1026
+#: includes/class.yith-wcbep-list-table-premium.php:1066
 #: templates/premium/main-tab-bulk-editor.php:640
 msgid "Variable product"
 msgstr "Variabel product"
 
 #: functions.yith-wcbep-premium.php:139
-#: includes/class.yith-wcbep-list-table-premium.php:1023
+#: includes/class.yith-wcbep-list-table-premium.php:1063
 #: templates/premium/main-tab-bulk-editor.php:637
 msgid "Simple product"
 msgstr "Simpel product"
@@ -468,134 +444,68 @@ msgstr "Toevoegen"
 msgid "Remove"
 msgstr "Verwijderen"
 
-#: includes/class.yith-wcbep-importer.php:90
-msgid "Importing process completed!"
-msgstr "Importeren voltooid!"
-
-#: includes/class.yith-wcbep-importer.php:100
-#: includes/class.yith-wcbep-importer.php:107
-msgid "Sorry, an error has occurred."
-msgstr "Sorry, er is een fout opgetreden."
-
-#: includes/class.yith-wcbep-importer.php:101
-msgid "The file does not exist, please try again."
-msgstr "Het bestand bestaat niet, probeer het alstublieft opniew."
-
-#: includes/class.yith-wcbep-importer.php:141
-msgid "Failed to import an attribute because it has no valid name"
-msgstr "Importeren van een eigenschap mislukt, ongeldige naam"
-
-#: includes/class.yith-wcbep-importer.php:160
-msgid "Attribute <strong>%s</strong> already exists."
-msgstr "Eigenschap <strong>%s</strong> bestaat al."
-
-#: includes/class.yith-wcbep-importer.php:216
-msgid "Failed to import %s %s"
-msgstr "Importeren mislukt %s %s"
-
-#: includes/class.yith-wcbep-importer.php:237
-msgid "Failed to import <strong>%s</strong>: Invalid post type %s"
-msgstr "Importeren mislukt <strong>%s</strong>: Ongeldig post type %s"
-
-#: includes/class.yith-wcbep-importer.php:252
-msgid "%s <strong>%s</strong> already exists."
-msgstr "%s <strong>%s</strong> bestaat al."
-
-#: includes/class.yith-wcbep-importer.php:307
-#: includes/class.yith-wcbep-importer.php:321
-msgid "Failed to import %s <strong>%s</strong>"
-msgstr "Importeren mislukt %s <strong>%s</strong>"
-
-#: includes/class.yith-wcbep-importer.php:360
-msgid "Failed to import %s [%s]"
-msgstr "Importeren mislukt %s [%s]"
-
-#: includes/class.yith-wcbep-importer.php:429
-msgid "Invalid file type"
-msgstr "Ongeldig bestandstype"
-
-#: includes/class.yith-wcbep-importer.php:474
-msgid "Remote server did not respond"
-msgstr "Externe server reageerd niet"
-
-#: includes/class.yith-wcbep-importer.php:481
-msgid "Remote server returned error response %1$d %2$s"
-msgstr "Externe server geeft error melding %1$d %2$s"
-
-#: includes/class.yith-wcbep-importer.php:489
-msgid "Remote file with incorrect size"
-msgstr "Extern bestand met onjuiste grootte"
-
-#: includes/class.yith-wcbep-importer.php:495
-msgid "Zero size file downloaded"
-msgstr "Nul grootte bestand gedownload"
-
-#: includes/class.yith-wcbep-importer.php:502
-msgid "Remote file is too large, limit is %s"
-msgstr "Extern bestand is te groot, limiet is %s"
-
-#: includes/class.yith-wcbep-list-table-premium.php:921
+#: includes/class.yith-wcbep-list-table-premium.php:961
 #: templates/premium/main-tab-bulk-editor.php:437
 msgid "Taxable"
 msgstr "Belastbaar"
 
-#: includes/class.yith-wcbep-list-table-premium.php:922
+#: includes/class.yith-wcbep-list-table-premium.php:962
 #: templates/premium/main-tab-bulk-editor.php:438
 msgid "Shipping only"
 msgstr "Uitsluitend verzending"
 
-#: includes/class.yith-wcbep-list-table-premium.php:933
+#: includes/class.yith-wcbep-list-table-premium.php:973
 #: templates/premium/main-tab-bulk-editor.php:454
 msgid "Standard"
 msgstr "Standaard"
 
-#: includes/class.yith-wcbep-list-table-premium.php:952
+#: includes/class.yith-wcbep-list-table-premium.php:992
 #: templates/premium/main-tab-bulk-editor.php:617
 msgid "Do not allow"
 msgstr "Niet toestaan"
 
-#: includes/class.yith-wcbep-list-table-premium.php:953
+#: includes/class.yith-wcbep-list-table-premium.php:993
 #: templates/premium/main-tab-bulk-editor.php:618
 msgid "Allow, but notify customer"
 msgstr "Toestaan, maar klant inlichten"
 
-#: includes/class.yith-wcbep-list-table-premium.php:954
+#: includes/class.yith-wcbep-list-table-premium.php:994
 #: templates/premium/main-tab-bulk-editor.php:619
 msgid "Allow"
 msgstr "Toestaan"
 
-#: includes/class.yith-wcbep-list-table-premium.php:967
+#: includes/class.yith-wcbep-list-table-premium.php:1007
 #: templates/premium/main-tab-bulk-editor.php:479
-#: templates/premium/main-tab-filters-and-table.php:296
+#: templates/premium/main-tab-filters-and-table.php:312
 msgid "No shipping class"
 msgstr "Geen verzendklasse"
 
-#: includes/class.yith-wcbep-list-table-premium.php:1004
+#: includes/class.yith-wcbep-list-table-premium.php:1044
 #: templates/premium/main-tab-bulk-editor.php:729
 msgid "Standard Product"
 msgstr "Standaard Product"
 
-#: includes/class.yith-wcbep-list-table-premium.php:1005
+#: includes/class.yith-wcbep-list-table-premium.php:1045
 #: templates/premium/main-tab-bulk-editor.php:730
 msgid "Application/Software"
 msgstr "Applicatie/Software"
 
-#: includes/class.yith-wcbep-list-table-premium.php:1006
+#: includes/class.yith-wcbep-list-table-premium.php:1046
 #: templates/premium/main-tab-bulk-editor.php:731
 msgid "Music"
 msgstr "Muziek"
 
-#: includes/class.yith-wcbep-list-table-premium.php:1019
+#: includes/class.yith-wcbep-list-table-premium.php:1059
 msgid "Variation"
 msgstr "Keuze"
 
-#: includes/class.yith-wcbep-list-table-premium.php:1242
+#: includes/class.yith-wcbep-list-table-premium.php:1282
 #: includes/class.yith-wcbep-list-table.php:290
 #: templates/premium/main-tab-columns-settings.php:33
 msgid "Select All"
 msgstr "Alles selecteren"
 
-#: includes/class.yith-wcbep-list-table-premium.php:1347
+#: includes/class.yith-wcbep-list-table-premium.php:1387
 #: includes/class.yith-wcbep-list-table.php:378
 msgid "1 item"
 msgid_plural "%s items"
@@ -611,12 +521,6 @@ msgstr "Normale prijs"
 #: templates/main-tab.php:127
 msgid "Sale Price"
 msgstr "Sale prijs"
-
-#: includes/class.yith-wcbep-xml-parser.php:137
-msgid ""
-"This does not appear to be a WXR file, missing/invalid WXR version number"
-msgstr ""
-"Dit blijkt geen WXR bestand te zijn, ontbreekt/onjuist WXR versie nummer"
 
 #: includes/compatibility/class.yith-wcbep-badge-management-compatibility.php:66
 #: includes/compatibility/class.yith-wcbep-badge-management-compatibility.php:122
@@ -722,7 +626,7 @@ msgstr ""
 
 #: plugin-options/settings-options.php:34
 msgid "Use Light Query"
-msgstr ""
+msgstr "Gebruik lichte query"
 
 #: plugin-options/settings-options.php:38
 msgid ""
@@ -732,6 +636,11 @@ msgid ""
 "products by price will not work. Please note: use it only if you have a huge "
 "amount of products."
 msgstr ""
+"Indien ingeschakeld, gebruikt de plug-in een lichte query om producten op te "
+"halen, dus het verbetert de prestaties van uw website. Als u deze optie "
+"inschakelt, kunt u GEEN geavanceerde functies gebruiken: het filteren van "
+"variabele producten op prijs werkt bijvoorbeeld niet. Let op: gebruik het "
+"alleen als u een enorme hoeveelheid producten heeft."
 
 #: templates/main-tab.php:10
 #: templates/premium/main-tab-filters-and-table.php:15
@@ -743,22 +652,22 @@ msgid "Filter Categories"
 msgstr "Filter categorieën"
 
 #: templates/main-tab.php:78
-#: templates/premium/main-tab-filters-and-table.php:324
+#: templates/premium/main-tab-filters-and-table.php:340
 msgid "Products per page"
 msgstr "Producten per pagina"
 
 #: templates/main-tab.php:85
-#: templates/premium/main-tab-filters-and-table.php:342
+#: templates/premium/main-tab-filters-and-table.php:358
 msgid "Get products"
 msgstr "Krijg producten"
 
 #: templates/main-tab.php:86
-#: templates/premium/main-tab-filters-and-table.php:344
+#: templates/premium/main-tab-filters-and-table.php:360
 msgid "Reset filters"
 msgstr "Filters resetten"
 
 #: templates/main-tab.php:90
-#: templates/premium/main-tab-filters-and-table.php:350
+#: templates/premium/main-tab-filters-and-table.php:366
 msgid "Products"
 msgstr "Producten"
 
@@ -766,7 +675,7 @@ msgstr "Producten"
 #: templates/premium/main-tab-custom-input.php:45
 #: templates/premium/main-tab-custom-input.php:55
 #: templates/premium/main-tab-custom-input.php:67
-#: templates/premium/main-tab-filters-and-table.php:354
+#: templates/premium/main-tab-filters-and-table.php:370
 #: templates/premium/panel/custom-fields-tab.php:27
 #: templates/premium/panel/custom-taxonomies-tab.php:45
 #: templates/premium/panel/enabled-columns-tab.php:40
@@ -775,7 +684,7 @@ msgstr "Opslaan"
 
 #: templates/main-tab.php:92 templates/main-tab.php:108
 #: templates/premium/main-tab-bulk-editor.php:16
-#: templates/premium/main-tab-filters-and-table.php:356
+#: templates/premium/main-tab-filters-and-table.php:372
 msgid "Bulk editing"
 msgstr "Bulk bewerking"
 
@@ -856,7 +765,6 @@ msgstr "Toepassen"
 #: templates/premium/main-tab-custom-input.php:47
 #: templates/premium/main-tab-custom-input.php:57
 #: templates/premium/main-tab-custom-input.php:69
-#: templates/premium/main-tab-importer.php:16
 msgid "Cancel"
 msgstr "Cancel"
 
@@ -907,7 +815,7 @@ msgid "Please note: Bulk Editor edits only enabled columns"
 msgstr "Opmerking: Bulk bewerking, bewerkt uitsluitend ingeschakelde kolommen"
 
 #: templates/premium/main-tab-columns-settings.php:11
-#: templates/premium/main-tab-filters-and-table.php:361
+#: templates/premium/main-tab-filters-and-table.php:377
 msgid "Show/Hide Columns"
 msgstr "Weergeven/Verbergen Kolommen"
 
@@ -973,41 +881,37 @@ msgstr "Eindigt met"
 msgid "Regular Expression"
 msgstr "Reguliere expressies"
 
-#: templates/premium/main-tab-filters-and-table.php:311
+#: templates/premium/main-tab-filters-and-table.php:327
 msgid "Show all product types"
 msgstr "Toon alle product types"
 
-#: templates/premium/main-tab-filters-and-table.php:333
+#: templates/premium/main-tab-filters-and-table.php:349
 msgid "Include Variations"
 msgstr "Inclusief variaties"
 
-#: templates/premium/main-tab-filters-and-table.php:346
+#: templates/premium/main-tab-filters-and-table.php:362
 msgid "Select on filters"
 msgstr "Selecteren op filters"
 
-#: templates/premium/main-tab-filters-and-table.php:366
+#: templates/premium/main-tab-filters-and-table.php:382
 msgid "Undo"
 msgstr "Ongedaan maken"
 
-#: templates/premium/main-tab-filters-and-table.php:368
+#: templates/premium/main-tab-filters-and-table.php:384
 msgid "Redo"
 msgstr "Opnieuw"
 
-#: templates/premium/main-tab-filters-and-table.php:375
+#: templates/premium/main-tab-filters-and-table.php:397
 msgid "Export Selected"
 msgstr "Selectie exporteren"
 
-#: templates/premium/main-tab-filters-and-table.php:379
+#: templates/premium/main-tab-filters-and-table.php:402
 msgid "New Product"
 msgstr "Nieuw Product"
 
-#: templates/premium/main-tab-filters-and-table.php:400
+#: templates/premium/main-tab-filters-and-table.php:419
 msgid "Resize Table"
 msgstr "Formaat table wijzigen"
-
-#: templates/premium/main-tab-importer.php:11
-msgid "Upload"
-msgstr "Uploaden"
 
 #: templates/premium/panel/custom-taxonomies-tab.php:30
 msgid "Choose Taxonomies"
@@ -1040,11 +944,84 @@ msgstr ""
 "\"> Download meer plug-ins voor uw e-commerceshop op <strong> YITH</strong></"
 "a>"
 
-#: includes/class.yith-wcbep-list-table-premium.php:923
+#: includes/class.yith-wcbep-list-table-premium.php:963
 #: templates/premium/main-tab-bulk-editor.php:439
 msgctxt "Tax status"
 msgid "None"
 msgstr "Geen"
+
+#~ msgid ""
+#~ "You do not have sufficient permissions to export the content of this site."
+#~ msgstr ""
+#~ "U heeft onvoldoende rechten om de inhoud van deze site te exporteren."
+
+#~ msgid "Import"
+#~ msgstr "Importeren"
+
+#~ msgid "Import Products"
+#~ msgstr "Producten importeren"
+
+#~ msgid "File URL"
+#~ msgstr "Bestand URL"
+
+#~ msgid "Importing..."
+#~ msgstr "Importeren..."
+
+#~ msgid "Importing process completed!"
+#~ msgstr "Importeren voltooid!"
+
+#~ msgid "Sorry, an error has occurred."
+#~ msgstr "Sorry, er is een fout opgetreden."
+
+#~ msgid "The file does not exist, please try again."
+#~ msgstr "Het bestand bestaat niet, probeer het alstublieft opniew."
+
+#~ msgid "Failed to import an attribute because it has no valid name"
+#~ msgstr "Importeren van een eigenschap mislukt, ongeldige naam"
+
+#~ msgid "Attribute <strong>%s</strong> already exists."
+#~ msgstr "Eigenschap <strong>%s</strong> bestaat al."
+
+#~ msgid "Failed to import %s %s"
+#~ msgstr "Importeren mislukt %s %s"
+
+#~ msgid "Failed to import <strong>%s</strong>: Invalid post type %s"
+#~ msgstr "Importeren mislukt <strong>%s</strong>: Ongeldig post type %s"
+
+#~ msgid "%s <strong>%s</strong> already exists."
+#~ msgstr "%s <strong>%s</strong> bestaat al."
+
+#~ msgid "Failed to import %s <strong>%s</strong>"
+#~ msgstr "Importeren mislukt %s <strong>%s</strong>"
+
+#~ msgid "Failed to import %s [%s]"
+#~ msgstr "Importeren mislukt %s [%s]"
+
+#~ msgid "Invalid file type"
+#~ msgstr "Ongeldig bestandstype"
+
+#~ msgid "Remote server did not respond"
+#~ msgstr "Externe server reageerd niet"
+
+#~ msgid "Remote server returned error response %1$d %2$s"
+#~ msgstr "Externe server geeft error melding %1$d %2$s"
+
+#~ msgid "Remote file with incorrect size"
+#~ msgstr "Extern bestand met onjuiste grootte"
+
+#~ msgid "Zero size file downloaded"
+#~ msgstr "Nul grootte bestand gedownload"
+
+#~ msgid "Remote file is too large, limit is %s"
+#~ msgstr "Extern bestand is te groot, limiet is %s"
+
+#~ msgid ""
+#~ "This does not appear to be a WXR file, missing/invalid WXR version number"
+#~ msgstr ""
+#~ "Dit blijkt geen WXR bestand te zijn, ontbreekt/onjuist WXR versie nummer"
+
+#~ msgid "Upload"
+#~ msgstr "Uploaden"
 
 #~ msgid "Catalog/search"
 #~ msgstr "Catalogus/zoeken"

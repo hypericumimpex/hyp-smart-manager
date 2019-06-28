@@ -3,7 +3,7 @@
  * Plugin Name: HYP Smart Manager
  * Plugin URI: https://github.com/hypericumimpex/hyp-smart-manager/
  * Description: <code><strong>HYP Bulk Product Editing</strong></code> allows you to edit multiple products at the same time. You can easily filter products and edit all fields you need in a massive, simple and fast way.
- * Version: 1.2.13
+ * Version: 1.2.15
  * Author: Romeo C.
  * Author URI: https://github.com/hypericumimpex/
  * Text Domain: yith-woocommerce-bulk-product-editing
@@ -61,7 +61,7 @@ register_activation_hook( __FILE__, 'yith_plugin_registration_hook' );
 
 
 if ( !defined( 'YITH_WCBEP_VERSION' ) ) {
-    define( 'YITH_WCBEP_VERSION', '1.2.13' );
+    define( 'YITH_WCBEP_VERSION', '1.2.15' );
 }
 
 if ( !defined( 'YITH_WCBEP_PREMIUM' ) ) {
@@ -119,9 +119,6 @@ function yith_wcbep_pr_init() {
     // Load required classes and functions
     require_once( 'includes/class.yith-wcbep-list-table.php' );
     require_once( 'includes/class.yith-wcbep-list-table-premium.php' );
-    require_once( 'includes/class.yith-wcbep-exporter.php' );
-    require_once( 'includes/class.yith-wcbep-importer.php' );
-    require_once( 'includes/class.yith-wcbep-xml-parser.php' );
     require_once( 'includes/class.yith-wcbep-custom-fields-manager.php' );
     require_once( 'includes/class.yith-wcbep-custom-taxonomies-manager.php' );
     require_once( 'includes/compatibility/class.yith-wcbep-compatibility.php' );

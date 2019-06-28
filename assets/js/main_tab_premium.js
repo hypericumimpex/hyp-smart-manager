@@ -55,6 +55,7 @@ jQuery( function ( $ ) {
         f_stock_qty_value                    = $( '#yith-wcbep-stock-qty-filter-value' ),
         f_stock_status                       = $( '#yith-wcbep-stock-status-filter-select' ),
         f_status                             = $( '#yith-wcbep-status-filter-select' ),
+        f_visibility                         = $( '#yith-wcbep-visibility-filter-select' ),
         f_shipping_class                     = $( '#yith-wcbep-shipping-class-filter-select' ),
         f_per_page                           = $( '#yith-wcbep-per-page-filter' ),
         f_product_type                       = $( '#yith-wcbep-product-type-filter-select' ),
@@ -79,11 +80,6 @@ jQuery( function ( $ ) {
         cols_settings                        = $( '#yith-wcbep-columns-settings-wrapper' ),
         cols_settings_select_all_btn         = $( '#yith-wcbep-columns-settings-select-all' ),
         cols_settings_unselect_all_btn       = $( '#yith-wcbep-columns-settings-unselect-all' ),
-        importer                             = $( '#yith-wcbep-importer-wrapper' ),
-        importer_cancel                      = $( '#yith-wcbep-importer-cancel' ),
-        importer_save                        = $( '#yith-wcbep-importer-save' ),
-        importer_upload_url                  = $( '#yith-wcbep-importer-upload-url' ),
-        importer_upload_btn                  = $( '#yith-wcbep-importer-upload-btn' ),
         my_checked_rows                      = [],
         modified_rows                        = [],
         undo_btn                             = $( '#yith-wcbep-undo' ),
@@ -91,11 +87,9 @@ jQuery( function ( $ ) {
         new_product_btn                      = $( '#yith-wcbep-new' ),
         delete_product_btn                   = $( '#yith-wcbep-delete' ),
         export_btn                           = $( '#yith-wcbep-export' ),
-        import_btn                           = $( '#yith-wcbep-import' ),
-        imported_file                        = $( '#yith-wcbep-imported-file' ),
         export_form                          = $( '#yith-wcbep-export-form' ),
         export_form_btn                      = $( '#yith-wcbep-export-form-btn' ),
-        export_ids                           = $( '#yith-wcbep-export-ids' ),
+        export_ids                           = $( '#yith-wcbep-export-form__selected-products' ),
         message                              = $( '#yith-wcbep-message' ),
         initial_table_width                  = table.width(),
         close_btn                            = $( '.yith-wcbep-close' ),
@@ -154,7 +148,7 @@ jQuery( function ( $ ) {
                 a.find( '.yith-wcbep-select-selected' ).val( '[' + val + ']' );
                 //a.find('.yith-wcbep-select-values').html('');
                 var select = b.find( 'select' );
-                var txt = '';
+                var txt    = '';
                 if ( val != '' && typeof val != 'object' ) {
                     val = [ val ];
                 }
@@ -172,7 +166,7 @@ jQuery( function ( $ ) {
                     if ( a.find( '.yith-wcbep-attr-is-visible' ).val() == -1 || a.find( '.yith-wcbep-attr-is-variation' ).val() == -1 ) {
 
                     } else {
-                        var is_visible = b.find( '.yith-wcbep-custom-input-attributes-visible' ).is( ':checked' ) ? '1' : '0';
+                        var is_visible   = b.find( '.yith-wcbep-custom-input-attributes-visible' ).is( ':checked' ) ? '1' : '0';
                         var is_variation = b.find( '.yith-wcbep-custom-input-attributes-variations' ).is( ':checked' ) ? '1' : '0';
                         a.find( '.yith-wcbep-attr-is-visible' ).val( is_visible );
                         a.find( '.yith-wcbep-attr-is-variation' ).val( is_variation );
@@ -188,7 +182,7 @@ jQuery( function ( $ ) {
                 return;
             } else if ( b == custom_input_image ) {
                 var new_img_url = b.find( 'img' ).attr( 'src' ) ? b.find( 'img' ).attr( 'src' ) : '';
-                var new_img_id = b.find( '.yith-wcbep-hidden-image-value' ).val();
+                var new_img_id  = b.find( '.yith-wcbep-hidden-image-value' ).val();
                 a.find( 'img' ).attr( 'src', new_img_url );
                 a.find( '.yith-wcbep-hidden-image-value' ).val( new_img_id );
                 return;
@@ -205,8 +199,9 @@ jQuery( function ( $ ) {
                 }
             } else {
                 var has_checkbox = !!a.find( '.yith-wcbep-editable-checkbox' ).length;
-                if ( has_checkbox )
+                if ( has_checkbox ) {
                     return;
+                }
 
                 // FOR TEXT FIELDS
                 a.html( b_input.val() );
@@ -334,7 +329,7 @@ jQuery( function ( $ ) {
         edited_matrix                        = [],
         controller_test                      = function ( create_matrix ) {
 
-            var row = 0;
+            var row       = 0;
             edited_matrix = [];
             modified_rows = [];
             table.find( 'tbody#the-list > tr' ).each( function () {
@@ -404,16 +399,16 @@ jQuery( function ( $ ) {
 
             custom_input_down_files.find( '.yith-wcbep-custom-input-downloadable-files-choose-file' ).on( 'click', function () {
                 var my_row = $( this ).closest( 'tr' );
-                var file = wp.media( {
-                                         title   : 'Choose file',
-                                         multiple: false
-                                     } ).open()
-                             .on( 'select', function () {
-                                 var uploaded_file = file.state().get( 'selection' ).first(),
-                                     file_url      = uploaded_file.toJSON().url;
+                var file   = wp.media( {
+                                           title   : 'Choose file',
+                                           multiple: false
+                                       } ).open()
+                    .on( 'select', function () {
+                        var uploaded_file = file.state().get( 'selection' ).first(),
+                            file_url      = uploaded_file.toJSON().url;
 
-                                 my_row.find( 'td.file_url input' ).val( file_url );
-                             } );
+                        my_row.find( 'td.file_url input' ).val( file_url );
+                    } );
             } );
             custom_input_down_files_table.sortable( {
                                                         items               : 'tr',
@@ -440,9 +435,9 @@ jQuery( function ( $ ) {
         custom_chosen,
         table_init                           = function () {
             first_resize_table_by_num_columns();
-            matrix_array = [];
+            matrix_array    = [];
             index_of_matrix = 0;
-            table = $( '#yith-wcbep-table-wrap .wp-list-table' );
+            table           = $( '#yith-wcbep-table-wrap .wp-list-table' );
             //carico i dati iniziali in una matrice
             matrix_init();
 
@@ -460,14 +455,14 @@ jQuery( function ( $ ) {
 
             // actions for checkbox in table
             table.on( 'click', 'td.manage_stock, td.sold_individually, td.featured, td.virtual, td.downloadable, td.enable_reviews', function () {
-                var checkbox = $( this ).find( 'input.yith-wcbep-editable-checkbox' );
+                var checkbox              = $( this ).find( 'input.yith-wcbep-editable-checkbox' );
                 var hidden_checkbox_value = $( this ).find( 'input.yith-wcbep-hidden-checkbox-value' );
                 if ( checkbox.is( ':checked' ) ) {
                     hidden_checkbox_value.val( '1' );
                 } else {
                     hidden_checkbox_value.val( '0' );
                 }
-                selected = $( this ).closest( 'td' );
+                selected      = $( this ).closest( 'td' );
                 last_selected = selected;
                 single_controller();
             } );
@@ -479,10 +474,10 @@ jQuery( function ( $ ) {
                 //var select       = $( this ).find( '.yith-wcbep-editable-select' );
                 //var hidden_value = $( this ).find( 'input.yith-wcbep-hidden-select-value' );
 
-                var select = $( this );
+                var select       = $( this );
                 var hidden_value = $( this ).closest( 'td' ).find( 'input.yith-wcbep-hidden-select-value' );
                 hidden_value.val( select.val() );
-                selected = $( this ).closest( 'td' );
+                selected      = $( this ).closest( 'td' );
                 last_selected = selected;
                 single_controller();
             } );
@@ -497,9 +492,9 @@ jQuery( function ( $ ) {
                 .on( 'click', 'td', function ( event ) {
                     event.stopPropagation();
                     custom_input_hide( true );
-                    selected = $( event.target );
+                    selected      = $( event.target );
                     last_selected = $( event.target ).closest( 'td' );
-                    current_cell = $( event.target ); //used for fo_to_next_cell
+                    current_cell  = $( event.target ); //used for fo_to_next_cell
 
                     if ( !selected.is( 'td' ) ) {
                         selected = selected.closest( 'td' );
@@ -514,7 +509,7 @@ jQuery( function ( $ ) {
 
 
                         message_not_editable.show();
-                        var top = event.pageY - 55 - 10;
+                        var top  = event.pageY - 55 - 10;
                         var left = event.pageX - 215 / 2;
                         message_not_editable.offset( { top: top, left: left } );
                         return;
@@ -533,7 +528,7 @@ jQuery( function ( $ ) {
                         my_input.val( selected.html() );
                         my_input.trigger( 'focus' ).select();
                     } else if ( $( event.target ).closest( 'td' ).hasClasses( [ 'categories' ], 'OR' ) ) {
-                        selected = $( event.target ).closest( 'td' );
+                        selected     = $( event.target ).closest( 'td' );
                         current_cell = $( event.target ).closest( 'td' ); //used for fo_to_next_cell
                         custom_input.prop( 'contenteditable', 'false' );
                         custom_input_categories.width( selected.width() );
@@ -548,16 +543,16 @@ jQuery( function ( $ ) {
                         custom_input_textarea.show();
                         custom_input_textarea.offset( selected.offset() );
                     } else if ( selected.hasClasses( [ 'image' ], 'OR' ) || $( event.target ).closest( 'td' ).hasClasses( [ 'image' ], 'OR' ) ) {
-                        selected = $( event.target ).closest( 'td' );
+                        selected    = $( event.target ).closest( 'td' );
                         var img_src = selected.find( 'img' ).attr( 'src' ) ? selected.find( 'img' ).attr( 'src' ) : '';
-                        var img_id = selected.find( '.yith-wcbep-hidden-image-value' ).val();
+                        var img_id  = selected.find( '.yith-wcbep-hidden-image-value' ).val();
                         custom_input_image.find( 'img' ).attr( 'src', img_src );
                         custom_input_image.find( '.yith-wcbep-hidden-image-value' ).val( img_id );
                         custom_input_image.show();
                         custom_input_image.offset( selected.offset() );
                     } else if ( selected.hasClasses( [ 'image_gallery' ], 'OR' ) || $( event.target ).closest( 'td' ).hasClasses( [ 'image_gallery' ], 'OR' ) ) {
-                        selected = $( event.target ).closest( 'td' );
-                        var images = selected.find( 'img' );
+                        selected         = $( event.target ).closest( 'td' );
+                        var images       = selected.find( 'img' );
                         var gallery_html = '<ul class="yith-wcbep-image-gallery">';
                         if ( images.length > 0 ) {
                             images.each( function () {
@@ -616,10 +611,10 @@ jQuery( function ( $ ) {
                         custom_chosen.find( '.chosen' ).select2( 'open' );
 
                     } else if ( $( event.target ).closest( 'td' ).is( '[class^="attr_"]' ) ) {
-                        selected = $( event.target ).closest( 'td' );
-                        var attr = selected.prop( 'class' ).split( ' ' )[ 0 ].replace( 'attr_', '' );
+                        selected          = $( event.target ).closest( 'td' );
+                        var attr          = selected.prop( 'class' ).split( ' ' )[ 0 ].replace( 'attr_', '' );
                         custom_attr_input = $( '#yith-wcbep-custom-input-attributes-' + attr );
-                        current_cell = $( event.target ).closest( 'td' ); //used for fo_to_next_cell
+                        current_cell      = $( event.target ).closest( 'td' ); //used for fo_to_next_cell
                         custom_attr_input.width( "240px" );
 
                         if ( selected.find( '.yith-wcbep-attr-is-visible' ).val() == -1 || selected.find( '.yith-wcbep-attr-is-variation' ).val() == -1 ) {
@@ -628,9 +623,9 @@ jQuery( function ( $ ) {
                             if ( my_chosen.prop( 'multiple' ) ) {
                                 my_chosen.val( '' ).trigger( 'change' );
                                 my_chosen.removeAttr( 'multiple' ).select2( { width: '100%' } )
-                                         .append( $( "<option></option>" )
-                                                      .attr( "value", '' )
-                                                      .text( ajax_object.leave_empty ) );
+                                    .append( $( "<option></option>" )
+                                                 .attr( "value", '' )
+                                                 .text( ajax_object.leave_empty ) );
                             }
                             my_chosen.val( $.parseJSON( selected.find( '.yith-wcbep-select-selected' ).val() ) );
                             my_chosen.trigger( "change" );
@@ -666,14 +661,14 @@ jQuery( function ( $ ) {
         },
         matrix_init                          = function () {
             //carico i dati iniziali in una matrice
-            matrix = [];
+            matrix      = [];
             cell_matrix = [];
-            var loop_y = 0;
+            var loop_y  = 0;
             table.find( 'tbody#the-list > tr' ).each( function () {
-                var item = $( this ).children( 'td' );
+                var item      = $( this ).children( 'td' );
                 var cell_cols = [ $( this ).children( 'th' ) ];
                 if ( item.length > 0 ) {
-                    var cols = [ false ];
+                    var cols   = [ false ];
                     var loop_x = 0;
                     item.each( function () {
                         $( this ).data( 'y', loop_y );
@@ -696,18 +691,18 @@ jQuery( function ( $ ) {
                 if ( item.length > 0 ) {
                     var cols = [ false ];
                     item.each( function () {
-                        var selected_hidden = $( this ).find( '.yith-wcbep-select-selected' );
-                        var hidden_checkbox_value = $( this ).find( 'input.yith-wcbep-hidden-checkbox-value' );
-                        var hidden_select_value = $( this ).find( 'input.yith-wcbep-hidden-select-value' );
-                        var hidden_image_value = $( this ).find( 'input.yith-wcbep-hidden-image-value' );
-                        var table_image_gallery = $( this ).find( '.yith-wcbep-table-image-gallery' );
+                        var selected_hidden           = $( this ).find( '.yith-wcbep-select-selected' );
+                        var hidden_checkbox_value     = $( this ).find( 'input.yith-wcbep-hidden-checkbox-value' );
+                        var hidden_select_value       = $( this ).find( 'input.yith-wcbep-hidden-select-value' );
+                        var hidden_image_value        = $( this ).find( 'input.yith-wcbep-hidden-image-value' );
+                        var table_image_gallery       = $( this ).find( '.yith-wcbep-table-image-gallery' );
                         var hidden_downloadable_files = $( this ).find( '.yith-wcbep-hidden-downloadable-file' );
-                        var not_editable_div = $( this ).find( '.not_editable' );
+                        var not_editable_div          = $( this ).find( '.not_editable' );
                         if ( selected_hidden.length > 0 ) {
                             // FOR CHOSEN FIELDS [es. categories, attributes]
-                            var my_array = [];
+                            var my_array            = [];
                             //for attributes ONLY
-                            var hidden_is_visible = $( this ).find( 'input.yith-wcbep-attr-is-visible' );
+                            var hidden_is_visible   = $( this ).find( 'input.yith-wcbep-attr-is-visible' );
                             var hidden_is_variation = $( this ).find( 'input.yith-wcbep-attr-is-variation' );
 
                             if ( hidden_is_visible.length > 0 && hidden_is_variation.length > 0 ) {
@@ -849,7 +844,7 @@ jQuery( function ( $ ) {
             return new_matrix;
         },
         checked_rows                         = function () {
-            var row = 0;
+            var row    = 0;
             var result = [];
             table.find( 'tbody#the-list > tr' ).each( function () {
                 var item = $( this ).find( 'th.check-column input:checked' );
@@ -970,16 +965,18 @@ jQuery( function ( $ ) {
                          var self = this;
                          if ( logic == 'OR' ) {
                              for ( var i in selectors ) {
-                                 if ( $( self ).hasClass( selectors[ i ] ) )
+                                 if ( $( self ).hasClass( selectors[ i ] ) ) {
                                      return true;
+                                 }
                              }
                              return false;
                          } else {
                              // AND
                              var result = true;
                              for ( var i in selectors ) {
-                                 if ( !$( self ).hasClass( selectors[ i ] ) )
+                                 if ( !$( self ).hasClass( selectors[ i ] ) ) {
                                      result = false;
+                                 }
                              }
                              return result;
                          }
@@ -987,7 +984,7 @@ jQuery( function ( $ ) {
                  } );
 
     $.fn.selectText = function () {
-        var doc = document;
+        var doc     = document;
         var element = this[ 0 ];
         if ( doc.body.createTextRange ) {
             var range = document.body.createTextRange();
@@ -995,7 +992,7 @@ jQuery( function ( $ ) {
             range.select();
         } else if ( window.getSelection ) {
             var selection = window.getSelection();
-            var range = document.createRange();
+            var range     = document.createRange();
             range.selectNodeContents( element );
             selection.removeAllRanges();
             selection.addRange( range );
@@ -1015,7 +1012,7 @@ jQuery( function ( $ ) {
                                }
                            } );
     cols_settings.draggable();
-    importer.draggable();
+
     table.css( { height: 'auto', width: new_width } );
     resize_table.resizable( {
                                 //alsoResize: '#yith-wcbep-table-wrap',
@@ -1089,8 +1086,9 @@ jQuery( function ( $ ) {
                 content = '<div class="not_editable_for_new"></div>';
             }
 
-            if ( current_matrix_keys[ i ] != 'cb' )
+            if ( current_matrix_keys[ i ] != 'cb' ) {
                 new_empty_row += '<td class="' + classes + '">' + content + '</td>';
+            }
         }
         new_empty_row += '</tr>';
 
@@ -1103,8 +1101,9 @@ jQuery( function ( $ ) {
     delete_product_btn.on( 'click', function ( e ) {
         e.stopPropagation();
         my_checked_rows = checked_rows();
-        if ( my_checked_rows.length < 1 )
+        if ( my_checked_rows.length < 1 ) {
             return;
+        }
 
         if ( $( this ).data( 'confirm' ) != 'yes' ) {
             $( this ).val( ajax_object.delete_confirm_txt.replace( '%s', my_checked_rows.length ) );
@@ -1156,8 +1155,9 @@ jQuery( function ( $ ) {
 
     export_btn.on( 'click', function () {
         my_checked_rows = checked_rows();
-        if ( my_checked_rows.length < 1 )
+        if ( my_checked_rows.length < 1 ) {
             return;
+        }
 
         var tmp_current_html_matrix = create_current_matrix(),
             matrix_to_export        = [];
@@ -1179,8 +1179,9 @@ jQuery( function ( $ ) {
 
     export_form_btn.on( 'click', function () {
         my_checked_rows = checked_rows();
-        if ( my_checked_rows.length < 1 )
+        if ( my_checked_rows.length < 1 ) {
             return;
+        }
 
         var tmp_current_html_matrix = create_current_matrix(),
             ids_to_export           = [];
@@ -1227,18 +1228,18 @@ jQuery( function ( $ ) {
                                   title   : 'Upload Image',
                                   multiple: true
                               } ).open()
-                      .on( 'select', function ( e ) {
-                          var uploaded_image = image.state().get( 'selection' ),
-                              gallery_html   = '';
+            .on( 'select', function ( e ) {
+                var uploaded_image = image.state().get( 'selection' ),
+                    gallery_html   = '';
 
-                          uploaded_image.map( function ( single_image ) {
-                              var image_url = single_image.toJSON().url;
-                              gallery_html += '<li class="image"><span class="delete">x</span><img data-image-id="' + single_image.id + '" src="' + image_url + '"></li>';
-                          } );
+                uploaded_image.map( function ( single_image ) {
+                    var image_url = single_image.toJSON().url;
+                    gallery_html += '<li class="image"><span class="delete">x</span><img data-image-id="' + single_image.id + '" src="' + image_url + '"></li>';
+                } );
 
-                          custom_input_gallery.find( '#yith-wcbep-custom-input-gallery-container ul' ).append( gallery_html );
-                          custom_input_gallery_init_actions();
-                      } );
+                custom_input_gallery.find( '#yith-wcbep-custom-input-gallery-container ul' ).append( gallery_html );
+                custom_input_gallery_init_actions();
+            } );
     } );
 
     //custom input IMAGE  init ----------------------------
@@ -1259,16 +1260,16 @@ jQuery( function ( $ ) {
     custom_input_image.on( 'click', '.yith-wcbep-custom-input-image-container', function ( e ) {
         e.preventDefault();
         var this_image = $( this ).find( 'img' ).first();
-        var image = wp.media( {
-                                  title   : 'Upload Image',
-                                  multiple: false
-                              } ).open()
-                      .on( 'select', function ( e ) {
-                          var uploaded_image = image.state().get( 'selection' ).first(),
-                              image_url      = uploaded_image.toJSON().url;
-                          this_image.attr( 'src', image_url );
-                          custom_input_image.find( '.yith-wcbep-hidden-image-value' ).val( uploaded_image.id );
-                      } );
+        var image      = wp.media( {
+                                       title   : 'Upload Image',
+                                       multiple: false
+                                   } ).open()
+            .on( 'select', function ( e ) {
+                var uploaded_image = image.state().get( 'selection' ).first(),
+                    image_url      = uploaded_image.toJSON().url;
+                this_image.attr( 'src', image_url );
+                custom_input_image.find( '.yith-wcbep-hidden-image-value' ).val( uploaded_image.id );
+            } );
     } );
 
 
@@ -1278,19 +1279,19 @@ jQuery( function ( $ ) {
             preview = parent.find( '#yith-wcbep-image-bulk-preview' ),
             value   = parent.find( '#yith-wcbep-image-bulk-value' ),
             src     = parent.find( '#yith-wcbep-image-bulk-src' );
-        var image = wp.media( {
-                                  title   : 'Upload Image',
-                                  multiple: false
-                              } ).open()
-                      .on( 'select', function ( e ) {
-                          var uploaded_image = image.state().get( 'selection' ).first(),
-                              image_url      = uploaded_image.toJSON().url,
-                              img            = $( '<img />' ).attr( 'src', image_url ),
-                              del            = $( '<span class="yith-wcbep-image-bulk-reset dashicons dashicons-no-alt"></span>' );
-                          preview.html( '' ).append( img ).append( del );
-                          value.val( uploaded_image.id );
-                          src.val( image_url );
-                      } );
+        var image   = wp.media( {
+                                    title   : 'Upload Image',
+                                    multiple: false
+                                } ).open()
+            .on( 'select', function ( e ) {
+                var uploaded_image = image.state().get( 'selection' ).first(),
+                    image_url      = uploaded_image.toJSON().url,
+                    img            = $( '<img />' ).attr( 'src', image_url ),
+                    del            = $( '<span class="yith-wcbep-image-bulk-reset dashicons dashicons-no-alt"></span>' );
+                preview.html( '' ).append( img ).append( del );
+                value.val( uploaded_image.id );
+                src.val( image_url );
+            } );
     } );
 
     $( document ).on( 'click', '.yith-wcbep-image-bulk-reset', function () {
@@ -1365,32 +1366,33 @@ jQuery( function ( $ ) {
         } );
 
         var data = {
-            paged              : '1',
-            order              : 'desc',
-            orderby            : 'ID',
-            f_title_select     : f_title_select.val(),
-            f_title_value      : f_title_value.val(),
-            f_description_select     : f_description_select.val(),
-            f_description_value      : f_description_value.val(),
-            f_sku_select       : f_sku_select.val(),
-            f_sku_value        : f_sku_value.val(),
-            f_categories       : f_categories.val(),
-            f_tags             : f_tags.val(),
-            f_attributes       : f_attributes,
-            f_reg_price_select : f_reg_price_select.val(),
-            f_reg_price_value  : f_reg_price_value.val(),
-            f_sale_price_select: f_sale_price_select.val(),
-            f_sale_price_value : f_sale_price_value.val(),
-            f_weight_select    : f_weight_select.val(),
-            f_weight_value     : f_weight_value.val(),
-            f_stock_qty_select : f_stock_qty_select.val(),
-            f_stock_qty_value  : f_stock_qty_value.val(),
-            f_per_page         : f_per_page.val(),
-            f_product_type     : f_product_type.val(),
-            f_stock_status     : f_stock_status.val(),
-            f_status           : f_status.val(),
-            f_shipping_class   : f_shipping_class.val(),
-            f_show_variations  : f_show_variations[ 0 ].checked ? 'yes' : 'no'
+            paged               : '1',
+            order               : 'desc',
+            orderby             : 'ID',
+            f_title_select      : f_title_select.val(),
+            f_title_value       : f_title_value.val(),
+            f_description_select: f_description_select.val(),
+            f_description_value : f_description_value.val(),
+            f_sku_select        : f_sku_select.val(),
+            f_sku_value         : f_sku_value.val(),
+            f_categories        : f_categories.val(),
+            f_tags              : f_tags.val(),
+            f_attributes        : f_attributes,
+            f_reg_price_select  : f_reg_price_select.val(),
+            f_reg_price_value   : f_reg_price_value.val(),
+            f_sale_price_select : f_sale_price_select.val(),
+            f_sale_price_value  : f_sale_price_value.val(),
+            f_weight_select     : f_weight_select.val(),
+            f_weight_value      : f_weight_value.val(),
+            f_stock_qty_select  : f_stock_qty_select.val(),
+            f_stock_qty_value   : f_stock_qty_value.val(),
+            f_per_page          : f_per_page.val(),
+            f_product_type      : f_product_type.val(),
+            f_stock_status      : f_stock_status.val(),
+            f_visibility            : f_visibility.val(),
+            f_status            : f_status.val(),
+            f_shipping_class    : f_shipping_class.val(),
+            f_show_variations   : f_show_variations[ 0 ].checked ? 'yes' : 'no'
         };
         list.update( data );
     } );
@@ -1399,7 +1401,7 @@ jQuery( function ( $ ) {
         custom_input_hide( true );
         // get selected ID
         var checked_array = table.find( 'tbody#the-list th.check-column > input:checked' );
-        var checked_ids = [];
+        var checked_ids   = [];
         checked_array.each( function () {
             checked_ids.push( $( this ).val() );
         } );
@@ -1513,8 +1515,9 @@ jQuery( function ( $ ) {
                         chosen_v         = this_chosen.val();
 
                     for ( var i in chosen_old_value ) {
-                        if ( chosen_old_value[ i ] )
+                        if ( chosen_old_value[ i ] ) {
                             chosen_old_str.push( chosen_old_value[ i ].toString() );
+                        }
                     }
                     chosen_old_value = chosen_old_str.slice();
 
@@ -1572,7 +1575,7 @@ jQuery( function ( $ ) {
                             break;
                         case 'rep':
                             var to_search = 'yes' === ajax_object.use_regex ? new RegExp( tags_v, "g" ) : tags_v;
-                            tags_new = tags_old_value.replace( to_search, tags_r );
+                            tags_new      = tags_old_value.replace( to_search, tags_r );
                             break;
                         case 'del':
                             tags_new = '';
@@ -1604,7 +1607,12 @@ jQuery( function ( $ ) {
                                 new_value = old_value + parseFloat( v );
                                 break;
                             case 'dec':
-                                new_value = old_value > 0 ? old_value - parseFloat( v ) : '';
+                                if ( 'menu_order' === number_array[ i ] ) {
+                                    // menu_order can be negative
+                                    new_value = old_value - parseFloat( v );
+                                } else {
+                                    new_value = old_value > 0 ? old_value - parseFloat( v ) : '';
+                                }
                                 break;
                             case 'incp':
                                 new_value = old_value > 0 ? old_value + old_value * parseFloat( v ) / 100 : '';
@@ -1614,22 +1622,31 @@ jQuery( function ( $ ) {
                                 break;
                             case 'decfr':
                                 var cell_regular = $( cell_matrix[ ckd ][ current_matrix_keys.indexOf( 'regular_price' ) ] );
-                                old_value = parseFloat( cell_regular.html() );
-                                if ( !isNaN( old_value ) && old_value != '' )
+                                old_value        = parseFloat( cell_regular.html() );
+                                if ( !isNaN( old_value ) && old_value != '' ) {
                                     new_value = old_value - parseFloat( v );
+                                }
                                 break;
                             case 'decpfr':
                                 var cell_regular = $( cell_matrix[ ckd ][ current_matrix_keys.indexOf( 'regular_price' ) ] );
-                                old_value = parseFloat( cell_regular.html() );
-                                if ( !isNaN( old_value ) && old_value != '' )
+                                old_value        = parseFloat( cell_regular.html() );
+                                if ( !isNaN( old_value ) && old_value != '' ) {
                                     new_value = old_value - old_value * parseFloat( v ) / 100;
+                                }
                                 break;
                             case 'del':
                                 new_value = '';
                                 break;
                         }
-                        if ( new_value != '' && ( new_value < 0 || isNaN( new_value ) ) ) {
-                            new_value = 0;
+                        if ( 'menu_order' === number_array[ i ] ) {
+                            // menu_order can be negative
+                            if ( new_value !== '' && isNaN( new_value ) ) {
+                                new_value = 0;
+                            }
+                        } else {
+                            if ( new_value !== '' && ( new_value < 0 || isNaN( new_value ) ) ) {
+                                new_value = 0;
+                            }
                         }
 
                         if ( 'yes' === ajax_object.round_prices && ajax_object.woocommerce_price_num_decimals ) {
@@ -1637,7 +1654,7 @@ jQuery( function ( $ ) {
                                 _isValidPrice = new_value !== '' && 'yes' === ajax_object.round_prices && new_value > 0 && !isNaN( new_value );
                             if ( _isPriceField && _isValidPrice ) {
                                 var _roundFactor = Math.pow( 10, ajax_object.woocommerce_price_num_decimals );
-                                new_value = Math.round( new_value * _roundFactor ) / _roundFactor;
+                                new_value        = Math.round( new_value * _roundFactor ) / _roundFactor;
                             }
                         }
 
@@ -1671,7 +1688,7 @@ jQuery( function ( $ ) {
                                 break;
                             case 'rep':
                                 var to_search = 'yes' === ajax_object.use_regex ? new RegExp( v, "g" ) : v;
-                                new_value = old_value.replace( to_search, r );
+                                new_value     = old_value.replace( to_search, r );
                                 break;
                             case 'del':
                                 new_value = '';
@@ -1687,7 +1704,7 @@ jQuery( function ( $ ) {
             for ( var i in checkbox_array ) {
                 if ( current_matrix_keys.indexOf( checkbox_array[ i ] ) > -1 ) {
                     var cell = $( cell_matrix[ ckd ][ current_matrix_keys.indexOf( checkbox_array[ i ] ) ] );
-                    var s = $( '#yith-wcbep-' + checkbox_array[ i ] + '-bulk-select' ).val();
+                    var s    = $( '#yith-wcbep-' + checkbox_array[ i ] + '-bulk-select' ).val();
 
                     if ( cell.find( '.not_editable' ).length < 1 ) {
                         switch ( s ) {
@@ -1706,11 +1723,11 @@ jQuery( function ( $ ) {
 
             // for all selects
             var select_array = [ 'stock_status', 'tax_status', 'tax_class', 'allow_backorders', 'shipping_class', 'status', 'visibility', 'download_type', 'prod_type' ];
-            select_array = select_array.concat( extra_bulk.select );
+            select_array     = select_array.concat( extra_bulk.select );
             for ( var i in select_array ) {
                 if ( current_matrix_keys.indexOf( select_array[ i ] ) > -1 ) {
                     var cell = $( cell_matrix[ ckd ][ current_matrix_keys.indexOf( select_array[ i ] ) ] );
-                    var s = $( '#yith-wcbep-' + select_array[ i ] + '-bulk-select' ).val();
+                    var s    = $( '#yith-wcbep-' + select_array[ i ] + '-bulk-select' ).val();
 
                     if ( s != 'skip' && cell.find( '.not_editable' ).length < 1 ) {
                         cell.find( '.yith-wcbep-editable-select' ).val( s ).trigger( 'change' );
@@ -1720,7 +1737,7 @@ jQuery( function ( $ ) {
 
             // for all texts
             var text_array = [ 'button_text', 'product_url', 'slug', 'up_sells', 'cross_sells', 'title', 'sku', 'sale_price_from', 'sale_price_to', 'date' ];
-            text_array = text_array.concat( extra_bulk.text );
+            text_array     = text_array.concat( extra_bulk.text );
             for ( var i in text_array ) {
                 if ( current_matrix_keys.indexOf( text_array[ i ] ) > -1 ) {
                     var cell      = $( cell_matrix[ ckd ][ current_matrix_keys.indexOf( text_array[ i ] ) ] ),
@@ -1744,7 +1761,7 @@ jQuery( function ( $ ) {
                                 break;
                             case 'rep':
                                 var to_search = 'yes' === ajax_object.use_regex ? new RegExp( v, "g" ) : v;
-                                new_value = old_value.replace( to_search, r );
+                                new_value     = old_value.replace( to_search, r );
                                 break;
                             case 'del':
                                 new_value = '';
@@ -1772,7 +1789,7 @@ jQuery( function ( $ ) {
                             break;
                         case 'del':
                             new_value = '';
-                            r = '';
+                            r         = '';
                             break;
                     }
                     cell.find( '.yith-wcbep-hidden-image-value' ).val( new_value );
@@ -1893,14 +1910,14 @@ jQuery( function ( $ ) {
             checked_by_filters = [];
         attr_filter_select.each( function ( index, element ) {
             var my_attr_filter = $( element );
-            var attr_choosed = ( my_attr_filter.val() != null ) ? my_attr_filter.val() : null;
+            var attr_choosed   = ( my_attr_filter.val() != null ) ? my_attr_filter.val() : null;
             for ( var idx in attr_choosed ) {
                 attr_choosed[ idx ] = parseInt( attr_choosed[ idx ] );
             }
             f_attributes.push( [ my_attr_filter.data( 'taxonomy-name' ), attr_choosed ] );
         } );
 
-        current_matrix = create_current_matrix();
+        current_matrix         = create_current_matrix();
         var categories_choosed = ( f_categories.val() != null ) ? f_categories.val().map( parseInt ) : null,
             tags_choosed       = [];
 
@@ -1917,21 +1934,30 @@ jQuery( function ( $ ) {
             if ( f_title_value.val().length > 0 ) {
                 var this_title = t_row[ current_matrix_keys.indexOf( 'title' ) ];
 
-                if ( this_title.length < 1 )
+                if ( this_title.length < 1 ) {
                     finded = false;
+                }
 
                 switch ( f_title_select.val() ) {
                     case 'cont':
-                        if ( this_title.indexOf( f_title_value.val() ) < 0 ) finded = false;
+                        if ( this_title.indexOf( f_title_value.val() ) < 0 ) {
+                            finded = false;
+                        }
                         break;
                     case 'notcont':
-                        if ( this_title.indexOf( f_title_value.val() ) > -1 ) finded = false;
+                        if ( this_title.indexOf( f_title_value.val() ) > -1 ) {
+                            finded = false;
+                        }
                         break;
                     case 'starts':
-                        if ( this_title.indexOf( f_title_value.val() ) != 0 ) finded = false;
+                        if ( this_title.indexOf( f_title_value.val() ) != 0 ) {
+                            finded = false;
+                        }
                         break;
                     case 'ends':
-                        if ( this_title.indexOf( f_title_value.val() ) != ( this_title.length - f_title_value.val().length ) ) finded = false;
+                        if ( this_title.indexOf( f_title_value.val() ) != ( this_title.length - f_title_value.val().length ) ) {
+                            finded = false;
+                        }
                         break;
                 }
             }
@@ -1940,21 +1966,30 @@ jQuery( function ( $ ) {
             if ( f_sku_value.val().length > 0 ) {
                 var this_sku = t_row[ current_matrix_keys.indexOf( 'sku' ) ];
 
-                if ( this_sku.length < 1 )
+                if ( this_sku.length < 1 ) {
                     finded = false;
+                }
 
                 switch ( f_sku_select.val() ) {
                     case 'cont':
-                        if ( this_sku.indexOf( f_sku_value.val() ) < 0 ) finded = false;
+                        if ( this_sku.indexOf( f_sku_value.val() ) < 0 ) {
+                            finded = false;
+                        }
                         break;
                     case 'notcont':
-                        if ( this_sku.indexOf( f_sku_value.val() ) > -1 ) finded = false;
+                        if ( this_sku.indexOf( f_sku_value.val() ) > -1 ) {
+                            finded = false;
+                        }
                         break;
                     case 'starts':
-                        if ( this_sku.indexOf( f_sku_value.val() ) !== 0 ) finded = false;
+                        if ( this_sku.indexOf( f_sku_value.val() ) !== 0 ) {
+                            finded = false;
+                        }
                         break;
                     case 'ends':
-                        if ( this_sku.indexOf( f_sku_value.val() ) !== ( this_sku.length - f_sku_value.val().length ) ) finded = false;
+                        if ( this_sku.indexOf( f_sku_value.val() ) !== ( this_sku.length - f_sku_value.val().length ) ) {
+                            finded = false;
+                        }
                         break;
                 }
             }
@@ -1963,21 +1998,30 @@ jQuery( function ( $ ) {
             if ( f_description_value.val().length > 0 ) {
                 var this_description = t_row[ current_matrix_keys.indexOf( 'description' ) ];
 
-                if ( this_description.length < 1 )
+                if ( this_description.length < 1 ) {
                     finded = false;
+                }
 
                 switch ( f_description_select.val() ) {
                     case 'cont':
-                        if ( this_description.indexOf( f_description_value.val() ) < 0 ) finded = false;
+                        if ( this_description.indexOf( f_description_value.val() ) < 0 ) {
+                            finded = false;
+                        }
                         break;
                     case 'notcont':
-                        if ( this_description.indexOf( f_description_value.val() ) > -1 ) finded = false;
+                        if ( this_description.indexOf( f_description_value.val() ) > -1 ) {
+                            finded = false;
+                        }
                         break;
                     case 'starts':
-                        if ( this_description.indexOf( f_description_value.val() ) != 0 ) finded = false;
+                        if ( this_description.indexOf( f_description_value.val() ) != 0 ) {
+                            finded = false;
+                        }
                         break;
                     case 'ends':
-                        if ( this_description.indexOf( f_description_value.val() ) != ( this_description.length - f_description_value.val().length ) ) finded = false;
+                        if ( this_description.indexOf( f_description_value.val() ) != ( this_description.length - f_description_value.val().length ) ) {
+                            finded = false;
+                        }
                         break;
                 }
             }
@@ -1985,12 +2029,14 @@ jQuery( function ( $ ) {
             // CATEGORIES
             if ( categories_choosed != null && categories_choosed.length > 0 ) {
                 var this_categories = $.parseJSON( t_row[ current_matrix_keys.indexOf( 'categories' ) ] );
-                if ( this_categories.length < 1 )
+                if ( this_categories.length < 1 ) {
                     finded = false;
+                }
 
                 for ( var j in categories_choosed ) {
-                    if ( this_categories.indexOf( categories_choosed[ j ] ) < 0 )
+                    if ( this_categories.indexOf( categories_choosed[ j ] ) < 0 ) {
                         finded = false;
+                    }
                 }
 
             }
@@ -1998,12 +2044,14 @@ jQuery( function ( $ ) {
             // TAGS
             if ( tags_choosed != null && tags_choosed.length > 0 ) {
                 var this_tags = t_row[ current_matrix_keys.indexOf( 'tags' ) ].split( ', ' );
-                if ( this_tags.length < 1 )
+                if ( this_tags.length < 1 ) {
                     finded = false;
+                }
 
                 for ( var j in tags_choosed ) {
-                    if ( this_tags.indexOf( tags_choosed[ j ] ) < 0 )
+                    if ( this_tags.indexOf( tags_choosed[ j ] ) < 0 ) {
                         finded = false;
+                    }
                 }
             }
 
@@ -2011,13 +2059,15 @@ jQuery( function ( $ ) {
             for ( var j in f_attributes ) {
                 if ( f_attributes[ j ][ 1 ] != null && f_attributes[ j ][ 1 ].length > 0 ) {
                     var this_attrs = t_row[ current_matrix_keys.indexOf( 'attr_' + f_attributes[ j ][ 0 ] ) ][ 2 ];
-                    if ( this_attrs.length < 1 )
+                    if ( this_attrs.length < 1 ) {
                         finded = false;
+                    }
 
                     var attrs_choosed = f_attributes[ j ][ 1 ];
                     for ( var k in attrs_choosed ) {
-                        if ( this_attrs.indexOf( attrs_choosed[ k ] ) < 0 )
+                        if ( this_attrs.indexOf( attrs_choosed[ k ] ) < 0 ) {
                             finded = false;
+                        }
                     }
                 }
             }
@@ -2029,19 +2079,29 @@ jQuery( function ( $ ) {
 
                 switch ( f_reg_price_select.val() ) {
                     case 'mag':
-                        if ( !( this_reg_price > filter_price ) ) finded = false;
+                        if ( !( this_reg_price > filter_price ) ) {
+                            finded = false;
+                        }
                         break;
                     case 'min':
-                        if ( !( this_reg_price < filter_price ) ) finded = false;
+                        if ( !( this_reg_price < filter_price ) ) {
+                            finded = false;
+                        }
                         break;
                     case 'ug':
-                        if ( !( this_reg_price == filter_price ) ) finded = false;
+                        if ( !( this_reg_price == filter_price ) ) {
+                            finded = false;
+                        }
                         break;
                     case 'magug':
-                        if ( !( this_reg_price >= filter_price ) ) finded = false;
+                        if ( !( this_reg_price >= filter_price ) ) {
+                            finded = false;
+                        }
                         break;
                     case 'minug':
-                        if ( !( this_reg_price <= filter_price ) ) finded = false;
+                        if ( !( this_reg_price <= filter_price ) ) {
+                            finded = false;
+                        }
                         break;
                 }
             }
@@ -2053,19 +2113,29 @@ jQuery( function ( $ ) {
 
                 switch ( f_sale_price_select.val() ) {
                     case 'mag':
-                        if ( !( this_sale_price > filter_price ) ) finded = false;
+                        if ( !( this_sale_price > filter_price ) ) {
+                            finded = false;
+                        }
                         break;
                     case 'min':
-                        if ( !( this_sale_price < filter_price ) ) finded = false;
+                        if ( !( this_sale_price < filter_price ) ) {
+                            finded = false;
+                        }
                         break;
                     case 'ug':
-                        if ( !( this_sale_price == filter_price ) ) finded = false;
+                        if ( !( this_sale_price == filter_price ) ) {
+                            finded = false;
+                        }
                         break;
                     case 'magug':
-                        if ( !( this_sale_price >= filter_price ) ) finded = false;
+                        if ( !( this_sale_price >= filter_price ) ) {
+                            finded = false;
+                        }
                         break;
                     case 'minug':
-                        if ( !( this_sale_price <= filter_price ) ) finded = false;
+                        if ( !( this_sale_price <= filter_price ) ) {
+                            finded = false;
+                        }
                         break;
                 }
             }
@@ -2077,19 +2147,29 @@ jQuery( function ( $ ) {
 
                 switch ( f_weight_select.val() ) {
                     case 'mag':
-                        if ( !( this_weight > filter_weight ) ) finded = false;
+                        if ( !( this_weight > filter_weight ) ) {
+                            finded = false;
+                        }
                         break;
                     case 'min':
-                        if ( !( this_weight < filter_weight ) ) finded = false;
+                        if ( !( this_weight < filter_weight ) ) {
+                            finded = false;
+                        }
                         break;
                     case 'ug':
-                        if ( !( this_weight == filter_weight ) ) finded = false;
+                        if ( !( this_weight == filter_weight ) ) {
+                            finded = false;
+                        }
                         break;
                     case 'magug':
-                        if ( !( this_weight >= filter_weight ) ) finded = false;
+                        if ( !( this_weight >= filter_weight ) ) {
+                            finded = false;
+                        }
                         break;
                     case 'minug':
-                        if ( !( this_weight <= filter_weight ) ) finded = false;
+                        if ( !( this_weight <= filter_weight ) ) {
+                            finded = false;
+                        }
                         break;
                 }
             }
@@ -2101,19 +2181,29 @@ jQuery( function ( $ ) {
 
                 switch ( f_stock_qty_select.val() ) {
                     case 'mag':
-                        if ( !( this_stock_qty > filter_stock_qty ) ) finded = false;
+                        if ( !( this_stock_qty > filter_stock_qty ) ) {
+                            finded = false;
+                        }
                         break;
                     case 'min':
-                        if ( !( this_stock_qty < filter_stock_qty ) ) finded = false;
+                        if ( !( this_stock_qty < filter_stock_qty ) ) {
+                            finded = false;
+                        }
                         break;
                     case 'ug':
-                        if ( !( this_stock_qty == filter_stock_qty ) ) finded = false;
+                        if ( !( this_stock_qty == filter_stock_qty ) ) {
+                            finded = false;
+                        }
                         break;
                     case 'magug':
-                        if ( !( this_stock_qty >= filter_stock_qty ) ) finded = false;
+                        if ( !( this_stock_qty >= filter_stock_qty ) ) {
+                            finded = false;
+                        }
                         break;
                     case 'minug':
-                        if ( !( this_stock_qty <= filter_stock_qty ) ) finded = false;
+                        if ( !( this_stock_qty <= filter_stock_qty ) ) {
+                            finded = false;
+                        }
                         break;
                 }
             }
@@ -2125,6 +2215,15 @@ jQuery( function ( $ ) {
 
                 if ( filter_stock_status ) {
                     finded = this_stock_status === filter_stock_status;
+                }
+            }
+
+            // Visibility
+            if ( f_visibility.val().length > 0 ) {
+                var this_visibility   = t_row[ current_matrix_keys.indexOf( 'visibility' ) ],
+                    filter_visibility = f_visibility.val();
+                if ( filter_visibility ) {
+                    finded = this_visibility === filter_visibility;
                 }
             }
 
@@ -2150,12 +2249,14 @@ jQuery( function ( $ ) {
             var include_variation_in_cheched = f_show_variations[ 0 ].checked ? 'yes' : 'no';
             if ( include_variation_in_cheched == 'no' ) {
                 var tmp = $( t_row[ current_matrix_keys.indexOf( 'prod_type' ) ] );
-                if ( tmp.is( '.not_editable' ) )
+                if ( tmp.is( '.not_editable' ) ) {
                     finded = false;
+                }
             }
 
-            if ( finded )
+            if ( finded ) {
                 checked_by_filters.push( parseInt( i ) );
+            }
         }
 
         var all_checkbox = table.find( 'tbody#the-list th.check-column > input' ),
@@ -2283,66 +2384,6 @@ jQuery( function ( $ ) {
         cols_settings.find( 'input' ).first().attr( 'checked', true ).trigger( 'click' );
     } );
 
-    import_btn.on( 'click', function ( e ) {
-        var i_top = import_btn.offset().top + import_btn.outerHeight() + 20;
-        var i_left = import_btn.offset().left + import_btn.outerWidth() / 2 - 200;
-
-        importer.fadeIn( 'fast' );
-        importer.offset( {
-                             top : i_top,
-                             left: i_left
-                         } );
-    } );
-
-    importer_cancel.on( 'click', function () {
-        importer_upload_url.val( '' );
-        importer.fadeOut( 'fast' );
-    } );
-
-    importer_upload_btn.on( 'click', function () {
-        var file = wp.media( {
-                                 title   : 'Choose file',
-                                 multiple: false
-                             } ).open()
-                     .on( 'select', function () {
-                         var uploaded_file = file.state().get( 'selection' ).first(),
-                             file_url      = uploaded_file.toJSON().url;
-                         importer_upload_url.val( file_url );
-                     } );
-    } );
-
-    importer_save.on( 'click', function () {
-        var importer_form = $( "#yith-wcbep-importer-form" );
-
-        var post_data = {
-            file_url: importer_upload_url.val(),
-            action  : 'yith_wcbep_import'
-        };
-
-        $.ajax( {
-                    type   : "POST",
-                    data   : post_data,
-                    url    : ajaxurl,
-                    success: function ( response ) {
-                        if ( response.length > 0 ) {
-                            message.html( '<p>' + response + '</p>' );
-                            var dismiss_btn = $( '<button type="button" class="notice-dismiss" />' );
-                            dismiss_btn.appendTo( message );
-                            message.fadeIn();
-                            dismiss_btn.on( 'click', function () {
-                                message.fadeOut();
-                            } );
-                        }
-
-                        importer.unblock();
-                        importer.fadeOut( 'fast' );
-                        importer_upload_url.val( '' );
-                        //get_products_btn.trigger('click');
-
-                    }
-                } );
-    } );
-
     // AJAX WP_TABLE_LIST
     list = {
 
@@ -2388,8 +2429,9 @@ jQuery( function ( $ ) {
 
             $( 'input[name=paged]' ).on( 'change', function ( e ) {
 
-                if ( 13 == e.which )
+                if ( 13 == e.which ) {
                     e.preventDefault();
+                }
 
                 var query       = $( '.tablenav-pages a' )[ 0 ].search.substring( 1 ),
                     paged       = parseInt( $( this ).val() ),
@@ -2472,16 +2514,20 @@ jQuery( function ( $ ) {
                             var response = $.parseJSON( resp );
 
                             // Add the requested rows
-                            if ( response.rows.length )
+                            if ( response.rows.length ) {
                                 $( '#the-list' ).html( response.rows );
+                            }
                             // Update column headers for sorting
-                            if ( response.column_headers.length )
+                            if ( response.column_headers.length ) {
                                 $( 'thead tr, tfoot tr' ).html( response.column_headers );
+                            }
                             // Update pagination for navigation
-                            if ( response.pagination.bottom.length )
+                            if ( response.pagination.bottom.length ) {
                                 $( '.tablenav.top .tablenav-pages' ).html( $( response.pagination.top ).html() );
-                            if ( response.pagination.top.length )
+                            }
+                            if ( response.pagination.top.length ) {
                                 $( '.tablenav.bottom .tablenav-pages' ).html( $( response.pagination.bottom ).html() );
+                            }
 
                             // Init back our event handlers
                             list.init();
@@ -2506,8 +2552,9 @@ jQuery( function ( $ ) {
             var vars = query.split( "&" );
             for ( var i = 0; i < vars.length; i++ ) {
                 var pair = vars[ i ].split( "=" );
-                if ( pair[ 0 ] == variable )
+                if ( pair[ 0 ] == variable ) {
                     return pair[ 1 ];
+                }
             }
             return false;
         }

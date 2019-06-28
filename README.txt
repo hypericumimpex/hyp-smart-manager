@@ -2,6 +2,21 @@
 
 == Changelog ==
 
+= Version 1.2.15 - Released: May 29, 2019 =
+* Fix - product type editing
+* Fix - issue when adding categories
+* Update - plugin framework
+
+= Version 1.2.14 - Released: Feb 06, 2018 =
+* New - support to WooCommerce 3.6
+* New - filter for catalog visibility
+* Update - language files
+* Update - plugin framework
+* Fix - allow negative numbers for menu_order when bulk editing
+* Tweak - exporting product by using the WooCommerce Exporter in CSV
+* Removed - importing behavior since you can import products by using the WooCommerce Import feature
+
+
 = Version 1.2.13 - Released: Feb 06, 2018 =
 
 * New - support to WooCommerce 3.5.4
