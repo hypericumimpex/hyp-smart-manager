@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YITH WooCommerce Bulk Product Editing Premium\n"
 "Report-Msgid-Bugs-To: Your Inspiration Themes <plugins@yithemes.com>\n"
-"POT-Creation-Date: 2019-04-09 14:24:42+00:00\n"
+"POT-Creation-Date: 2019-08-05 11:28:31+00:00\n"
 "PO-Revision-Date: 2019-02-06 19:07+0000\n"
 "Last-Translator: \n"
 "Language-Team: Your Inspiration Themes <info@yithemes.com>\n"
@@ -38,7 +38,7 @@ msgid_plural "%s products deleted"
 msgstr[0] "%s product verwijderd"
 msgstr[1] "%s producten verwijderd"
 
-#: class.yith-wcbep-admin-premium.php:781
+#: class.yith-wcbep-admin-premium.php:779
 msgid ""
 "The downloadable file %s cannot be used as it does not have an allowed file "
 "type. Allowed types include: %s"
@@ -46,7 +46,7 @@ msgstr ""
 "Het gedownloade bestand %s kan niet worden gebruikt, aangezien het geen "
 "toegestaan bestandstype heeft. Toegestane bestandstypes bevatten: %s"
 
-#: class.yith-wcbep-admin-premium.php:788
+#: class.yith-wcbep-admin-premium.php:786
 msgid ""
 "The downloadable file %s cannot be used as it does not exist on the server."
 msgstr ""
@@ -59,37 +59,37 @@ msgid_plural "%s products edited"
 msgstr[0] "%s product bewerkt"
 msgstr[1] "%s producten bewerkt"
 
-#: class.yith-wcbep-admin.php:252
+#: class.yith-wcbep-admin.php:248
 msgid "Bulk Product Editing"
 msgstr "Bulk Product Editing"
 
-#: class.yith-wcbep-admin.php:256
+#: class.yith-wcbep-admin.php:252
 msgid "Premium Version"
 msgstr "Premium Versie"
 
-#: class.yith-wcbep-admin.php:322
+#: class.yith-wcbep-admin.php:317
 msgid "No Product Selected: to make a bulk edit, select one or more products"
 msgstr ""
 "Geen product geselecteerd: voor bulk bewerking, selecteer een of meer "
 "producten"
 
-#: class.yith-wcbep-admin.php:323
+#: class.yith-wcbep-admin.php:318
 msgid "- - - Empty - - -"
 msgstr "- - - Leeg - - -"
 
-#: class.yith-wcbep-admin.php:324
+#: class.yith-wcbep-admin.php:319
 msgid "file"
 msgstr "bestand"
 
-#: class.yith-wcbep-admin.php:325
+#: class.yith-wcbep-admin.php:320
 msgid "files"
 msgstr "bestanden"
 
-#: class.yith-wcbep-admin.php:326
+#: class.yith-wcbep-admin.php:321
 msgid "This field is not editable for this product!"
 msgstr "Dit veld is niet bewerkbaar voor dit product!"
 
-#: class.yith-wcbep-admin.php:327
+#: class.yith-wcbep-admin.php:322
 msgid ""
 "This field is not editable right now! Please save before trying to edit this "
 "field."
@@ -97,39 +97,39 @@ msgstr ""
 "Dit veld is op dit moment niet bewerkbaar! Sla de wijzigingen op voordat u "
 "dit veld gaat bewerken."
 
-#: class.yith-wcbep-admin.php:328
+#: class.yith-wcbep-admin.php:323
 msgid "ERROR: file not correct!"
 msgstr "ERROR: Bestand onjuist!"
 
-#: class.yith-wcbep-admin.php:329
+#: class.yith-wcbep-admin.php:324
 msgid "Confirm Deletion [Selected Products: %s]"
 msgstr "Bevestig verwijdering [Geselecteerde producten: %s]"
 
-#: class.yith-wcbep-admin.php:330
-#: templates/premium/main-tab-filters-and-table.php:407
+#: class.yith-wcbep-admin.php:325
+#: templates/premium/main-tab-filters-and-table.php:423
 msgid "Delete Selected"
 msgstr "Verwijder selectie"
 
 #: functions.yith-wcbep-premium.php:130
-#: includes/class.yith-wcbep-list-table-premium.php:1064
+#: includes/class.yith-wcbep-list-table-premium.php:1082
 #: templates/premium/main-tab-bulk-editor.php:638
 msgid "Grouped product"
 msgstr "Gegroupeerd product"
 
 #: functions.yith-wcbep-premium.php:133
-#: includes/class.yith-wcbep-list-table-premium.php:1065
+#: includes/class.yith-wcbep-list-table-premium.php:1083
 #: templates/premium/main-tab-bulk-editor.php:639
 msgid "External/Affiliate product"
 msgstr "Extern/verwant product"
 
 #: functions.yith-wcbep-premium.php:136
-#: includes/class.yith-wcbep-list-table-premium.php:1066
+#: includes/class.yith-wcbep-list-table-premium.php:1084
 #: templates/premium/main-tab-bulk-editor.php:640
 msgid "Variable product"
 msgstr "Variabel product"
 
 #: functions.yith-wcbep-premium.php:139
-#: includes/class.yith-wcbep-list-table-premium.php:1063
+#: includes/class.yith-wcbep-list-table-premium.php:1081
 #: templates/premium/main-tab-bulk-editor.php:637
 msgid "Simple product"
 msgstr "Simpel product"
@@ -230,97 +230,102 @@ msgid "Stock status"
 msgstr "Voorraad status"
 
 #: functions.yith-wcbep-premium.php:178
+#, fuzzy
+msgid "Stock quantity"
+msgstr "Voorraad hoeveelheid"
+
+#: functions.yith-wcbep-premium.php:179
 msgid "Manage stock"
 msgstr "Beheer voorraad"
 
-#: functions.yith-wcbep-premium.php:179
+#: functions.yith-wcbep-premium.php:180
 msgid "Sold individually"
 msgstr "Individueel verkocht"
 
-#: functions.yith-wcbep-premium.php:180
+#: functions.yith-wcbep-premium.php:181
 msgid "Featured"
 msgstr "Featured"
 
-#: functions.yith-wcbep-premium.php:181
+#: functions.yith-wcbep-premium.php:182
 msgid "Virtual"
 msgstr "Virtueel"
 
-#: functions.yith-wcbep-premium.php:182
+#: functions.yith-wcbep-premium.php:183
 msgid "Downloadable"
 msgstr "Downloadbaar"
 
-#: functions.yith-wcbep-premium.php:183
+#: functions.yith-wcbep-premium.php:184
 msgid "Enable reviews"
 msgstr "Reviews inschakelen"
 
-#: functions.yith-wcbep-premium.php:184
+#: functions.yith-wcbep-premium.php:185
 msgid "Tax status"
 msgstr "Belasting status"
 
-#: functions.yith-wcbep-premium.php:185
+#: functions.yith-wcbep-premium.php:186
 msgid "Tax class"
 msgstr "Belasting klasse"
 
-#: functions.yith-wcbep-premium.php:186
+#: functions.yith-wcbep-premium.php:187
 msgid "Allow backorders?"
 msgstr "Nabestellingen toestaan?"
 
-#: functions.yith-wcbep-premium.php:187
+#: functions.yith-wcbep-premium.php:188
 msgid "Shipping class"
 msgstr "Verzending klasse"
 
-#: functions.yith-wcbep-premium.php:188
+#: functions.yith-wcbep-premium.php:189
 msgid "Status"
 msgstr "Status"
 
-#: functions.yith-wcbep-premium.php:189
+#: functions.yith-wcbep-premium.php:190
 msgid "Catalog visibility"
 msgstr "Zichtbaarheid catalogus"
 
-#: functions.yith-wcbep-premium.php:190
+#: functions.yith-wcbep-premium.php:191
 msgid "Download Type"
 msgstr "Download Type"
 
-#: functions.yith-wcbep-premium.php:191
+#: functions.yith-wcbep-premium.php:192
 msgid "Product Type"
 msgstr "Productype"
 
-#: functions.yith-wcbep-premium.php:192
+#: functions.yith-wcbep-premium.php:193
 #: includes/class.yith-wcbep-list-table.php:56
 msgid "Date"
 msgstr "Datum"
 
-#: functions.yith-wcbep-premium.php:193
+#: functions.yith-wcbep-premium.php:194
 msgid "Sale price from"
 msgstr "Uitverkoop prijs formulier"
 
-#: functions.yith-wcbep-premium.php:194
+#: functions.yith-wcbep-premium.php:195
 msgid "Sale price to"
 msgstr "Uitverkoop prijs naar"
 
-#: functions.yith-wcbep-premium.php:195
+#: functions.yith-wcbep-premium.php:196
 msgid "Button text"
 msgstr "Knop tekst"
 
-#: functions.yith-wcbep-premium.php:196
+#: functions.yith-wcbep-premium.php:197
 msgid "Product URL"
 msgstr "Product URL"
 
-#: functions.yith-wcbep-premium.php:197
+#: functions.yith-wcbep-premium.php:198
 msgid "Upsells"
 msgstr "Upsells"
 
-#: functions.yith-wcbep-premium.php:198
+#: functions.yith-wcbep-premium.php:199
 msgid "Cross-sells"
 msgstr "Cross-sells"
 
-#: includes/class.yith-wcbep-custom-fields-manager.php:68
+#: includes/class.yith-wcbep-custom-fields-manager.php:72
 #: templates/premium/main-tab-bulk-editor.php:25
 #: templates/premium/panel/custom-fields-tab.php:11
 msgid "Custom Fields"
 msgstr "Aangepaste velden"
 
-#: includes/class.yith-wcbep-custom-fields-manager.php:215
+#: includes/class.yith-wcbep-custom-fields-manager.php:219
 #: includes/class.yith-wcbep-custom-taxonomies-manager.php:348
 #: includes/compatibility/class.yith-wcbep-badge-management-compatibility.php:129
 #: includes/compatibility/class.yith-wcbep-brands-add-on-compatibility.php:248
@@ -354,7 +359,7 @@ msgstr "Aangepaste velden"
 msgid "Set new"
 msgstr "Nieuwe instellen"
 
-#: includes/class.yith-wcbep-custom-fields-manager.php:216
+#: includes/class.yith-wcbep-custom-fields-manager.php:220
 #: templates/premium/main-tab-bulk-editor.php:38
 #: templates/premium/main-tab-bulk-editor.php:54
 #: templates/premium/main-tab-bulk-editor.php:70
@@ -369,7 +374,7 @@ msgstr "Nieuwe instellen"
 msgid "Prepend"
 msgstr "Voorvoegen"
 
-#: includes/class.yith-wcbep-custom-fields-manager.php:217
+#: includes/class.yith-wcbep-custom-fields-manager.php:221
 #: templates/premium/main-tab-bulk-editor.php:39
 #: templates/premium/main-tab-bulk-editor.php:55
 #: templates/premium/main-tab-bulk-editor.php:71
@@ -384,7 +389,7 @@ msgstr "Voorvoegen"
 msgid "Append"
 msgstr "Achteraan toevoegen"
 
-#: includes/class.yith-wcbep-custom-fields-manager.php:218
+#: includes/class.yith-wcbep-custom-fields-manager.php:222
 #: templates/premium/main-tab-bulk-editor.php:40
 #: templates/premium/main-tab-bulk-editor.php:56
 #: templates/premium/main-tab-bulk-editor.php:72
@@ -399,7 +404,7 @@ msgstr "Achteraan toevoegen"
 msgid "Replace"
 msgstr "Vervangen"
 
-#: includes/class.yith-wcbep-custom-fields-manager.php:219
+#: includes/class.yith-wcbep-custom-fields-manager.php:223
 #: templates/main-tab.php:138 templates/premium/main-tab-bulk-editor.php:89
 #: templates/premium/main-tab-bulk-editor.php:108
 #: templates/premium/main-tab-bulk-editor.php:127
@@ -444,68 +449,68 @@ msgstr "Toevoegen"
 msgid "Remove"
 msgstr "Verwijderen"
 
-#: includes/class.yith-wcbep-list-table-premium.php:961
+#: includes/class.yith-wcbep-list-table-premium.php:979
 #: templates/premium/main-tab-bulk-editor.php:437
 msgid "Taxable"
 msgstr "Belastbaar"
 
-#: includes/class.yith-wcbep-list-table-premium.php:962
+#: includes/class.yith-wcbep-list-table-premium.php:980
 #: templates/premium/main-tab-bulk-editor.php:438
 msgid "Shipping only"
 msgstr "Uitsluitend verzending"
 
-#: includes/class.yith-wcbep-list-table-premium.php:973
+#: includes/class.yith-wcbep-list-table-premium.php:991
 #: templates/premium/main-tab-bulk-editor.php:454
 msgid "Standard"
 msgstr "Standaard"
 
-#: includes/class.yith-wcbep-list-table-premium.php:992
+#: includes/class.yith-wcbep-list-table-premium.php:1010
 #: templates/premium/main-tab-bulk-editor.php:617
 msgid "Do not allow"
 msgstr "Niet toestaan"
 
-#: includes/class.yith-wcbep-list-table-premium.php:993
+#: includes/class.yith-wcbep-list-table-premium.php:1011
 #: templates/premium/main-tab-bulk-editor.php:618
 msgid "Allow, but notify customer"
 msgstr "Toestaan, maar klant inlichten"
 
-#: includes/class.yith-wcbep-list-table-premium.php:994
+#: includes/class.yith-wcbep-list-table-premium.php:1012
 #: templates/premium/main-tab-bulk-editor.php:619
 msgid "Allow"
 msgstr "Toestaan"
 
-#: includes/class.yith-wcbep-list-table-premium.php:1007
+#: includes/class.yith-wcbep-list-table-premium.php:1025
 #: templates/premium/main-tab-bulk-editor.php:479
-#: templates/premium/main-tab-filters-and-table.php:312
+#: templates/premium/main-tab-filters-and-table.php:328
 msgid "No shipping class"
 msgstr "Geen verzendklasse"
 
-#: includes/class.yith-wcbep-list-table-premium.php:1044
+#: includes/class.yith-wcbep-list-table-premium.php:1062
 #: templates/premium/main-tab-bulk-editor.php:729
 msgid "Standard Product"
 msgstr "Standaard Product"
 
-#: includes/class.yith-wcbep-list-table-premium.php:1045
+#: includes/class.yith-wcbep-list-table-premium.php:1063
 #: templates/premium/main-tab-bulk-editor.php:730
 msgid "Application/Software"
 msgstr "Applicatie/Software"
 
-#: includes/class.yith-wcbep-list-table-premium.php:1046
+#: includes/class.yith-wcbep-list-table-premium.php:1064
 #: templates/premium/main-tab-bulk-editor.php:731
 msgid "Music"
 msgstr "Muziek"
 
-#: includes/class.yith-wcbep-list-table-premium.php:1059
+#: includes/class.yith-wcbep-list-table-premium.php:1077
 msgid "Variation"
 msgstr "Keuze"
 
-#: includes/class.yith-wcbep-list-table-premium.php:1282
+#: includes/class.yith-wcbep-list-table-premium.php:1300
 #: includes/class.yith-wcbep-list-table.php:290
 #: templates/premium/main-tab-columns-settings.php:33
 msgid "Select All"
 msgstr "Alles selecteren"
 
-#: includes/class.yith-wcbep-list-table-premium.php:1387
+#: includes/class.yith-wcbep-list-table-premium.php:1405
 #: includes/class.yith-wcbep-list-table.php:378
 msgid "1 item"
 msgid_plural "%s items"
@@ -652,22 +657,22 @@ msgid "Filter Categories"
 msgstr "Filter categorieën"
 
 #: templates/main-tab.php:78
-#: templates/premium/main-tab-filters-and-table.php:340
+#: templates/premium/main-tab-filters-and-table.php:356
 msgid "Products per page"
 msgstr "Producten per pagina"
 
 #: templates/main-tab.php:85
-#: templates/premium/main-tab-filters-and-table.php:358
+#: templates/premium/main-tab-filters-and-table.php:374
 msgid "Get products"
 msgstr "Krijg producten"
 
 #: templates/main-tab.php:86
-#: templates/premium/main-tab-filters-and-table.php:360
+#: templates/premium/main-tab-filters-and-table.php:376
 msgid "Reset filters"
 msgstr "Filters resetten"
 
 #: templates/main-tab.php:90
-#: templates/premium/main-tab-filters-and-table.php:366
+#: templates/premium/main-tab-filters-and-table.php:382
 msgid "Products"
 msgstr "Producten"
 
@@ -675,7 +680,7 @@ msgstr "Producten"
 #: templates/premium/main-tab-custom-input.php:45
 #: templates/premium/main-tab-custom-input.php:55
 #: templates/premium/main-tab-custom-input.php:67
-#: templates/premium/main-tab-filters-and-table.php:370
+#: templates/premium/main-tab-filters-and-table.php:386
 #: templates/premium/panel/custom-fields-tab.php:27
 #: templates/premium/panel/custom-taxonomies-tab.php:45
 #: templates/premium/panel/enabled-columns-tab.php:40
@@ -684,7 +689,7 @@ msgstr "Opslaan"
 
 #: templates/main-tab.php:92 templates/main-tab.php:108
 #: templates/premium/main-tab-bulk-editor.php:16
-#: templates/premium/main-tab-filters-and-table.php:372
+#: templates/premium/main-tab-filters-and-table.php:388
 msgid "Bulk editing"
 msgstr "Bulk bewerking"
 
@@ -815,7 +820,7 @@ msgid "Please note: Bulk Editor edits only enabled columns"
 msgstr "Opmerking: Bulk bewerking, bewerkt uitsluitend ingeschakelde kolommen"
 
 #: templates/premium/main-tab-columns-settings.php:11
-#: templates/premium/main-tab-filters-and-table.php:377
+#: templates/premium/main-tab-filters-and-table.php:393
 msgid "Show/Hide Columns"
 msgstr "Weergeven/Verbergen Kolommen"
 
@@ -881,35 +886,35 @@ msgstr "Eindigt met"
 msgid "Regular Expression"
 msgstr "Reguliere expressies"
 
-#: templates/premium/main-tab-filters-and-table.php:327
+#: templates/premium/main-tab-filters-and-table.php:343
 msgid "Show all product types"
 msgstr "Toon alle product types"
 
-#: templates/premium/main-tab-filters-and-table.php:349
+#: templates/premium/main-tab-filters-and-table.php:365
 msgid "Include Variations"
 msgstr "Inclusief variaties"
 
-#: templates/premium/main-tab-filters-and-table.php:362
+#: templates/premium/main-tab-filters-and-table.php:378
 msgid "Select on filters"
 msgstr "Selecteren op filters"
 
-#: templates/premium/main-tab-filters-and-table.php:382
+#: templates/premium/main-tab-filters-and-table.php:398
 msgid "Undo"
 msgstr "Ongedaan maken"
 
-#: templates/premium/main-tab-filters-and-table.php:384
+#: templates/premium/main-tab-filters-and-table.php:400
 msgid "Redo"
 msgstr "Opnieuw"
 
-#: templates/premium/main-tab-filters-and-table.php:397
+#: templates/premium/main-tab-filters-and-table.php:413
 msgid "Export Selected"
 msgstr "Selectie exporteren"
 
-#: templates/premium/main-tab-filters-and-table.php:402
+#: templates/premium/main-tab-filters-and-table.php:418
 msgid "New Product"
 msgstr "Nieuw Product"
 
-#: templates/premium/main-tab-filters-and-table.php:419
+#: templates/premium/main-tab-filters-and-table.php:435
 msgid "Resize Table"
 msgstr "Formaat table wijzigen"
 
@@ -944,16 +949,53 @@ msgstr ""
 "\"> Download meer plug-ins voor uw e-commerceshop op <strong> YITH</strong></"
 "a>"
 
-#: includes/class.yith-wcbep-list-table-premium.php:963
+#: includes/class.yith-wcbep-list-table-premium.php:981
 #: templates/premium/main-tab-bulk-editor.php:439
 msgctxt "Tax status"
 msgid "None"
 msgstr "Geen"
 
+#, fuzzy
+#~ msgid "Invalid Request"
+#~ msgstr "Ongeldig bestandstype"
+
+#, fuzzy
+#~ msgid "Invalid license key"
+#~ msgstr "Ongeldig bestandstype"
+
+#, fuzzy
+#~ msgid "Invalid instance ID"
+#~ msgstr "Ongeldig bestandstype"
+
+#, fuzzy
+#~ msgid "Invalid security key"
+#~ msgstr "Ongeldig bestandstype"
+
+#, fuzzy
 #~ msgid ""
-#~ "You do not have sufficient permissions to export the content of this site."
+#~ "You do not have sufficient permissions to update the plugins for this "
+#~ "site."
 #~ msgstr ""
 #~ "U heeft onvoldoende rechten om de inhoud van deze site te exporteren."
+
+#, fuzzy
+#~ msgid "Product to activate"
+#~ msgid_plural "Products to activate"
+#~ msgstr[0] "Producten per pagina"
+#~ msgstr[1] "Producten per pagina"
+
+#, fuzzy
+#~ msgid "Product Name"
+#~ msgstr "Productype"
+
+#, fuzzy
+#~ msgid "Club Subscription"
+#~ msgstr "Beschrijving"
+
+#, fuzzy
+#~ msgctxt "plugin-fw"
+#~ msgid "Updating %s..."
+#~ msgstr "Importeren..."
 
 #~ msgid "Import"
 #~ msgstr "Importeren"
@@ -963,9 +1005,6 @@ msgstr "Geen"
 
 #~ msgid "File URL"
 #~ msgstr "Bestand URL"
-
-#~ msgid "Importing..."
-#~ msgstr "Importeren..."
 
 #~ msgid "Importing process completed!"
 #~ msgstr "Importeren voltooid!"
@@ -996,9 +1035,6 @@ msgstr "Geen"
 
 #~ msgid "Failed to import %s [%s]"
 #~ msgstr "Importeren mislukt %s [%s]"
-
-#~ msgid "Invalid file type"
-#~ msgstr "Ongeldig bestandstype"
 
 #~ msgid "Remote server did not respond"
 #~ msgstr "Externe server reageerd niet"

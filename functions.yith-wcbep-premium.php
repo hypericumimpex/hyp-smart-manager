@@ -175,6 +175,7 @@ if ( !function_exists( 'yith_wcbep_get_labels' ) ) {
                                    'downloadable_files' => __( 'Downloadable files', 'woocommerce' ),
                                    'menu_order'         => __( 'Menu order', 'woocommerce' ),
                                    'stock_status'       => __( 'Stock status', 'woocommerce' ),
+                                   'stock_qty'          => __( 'Stock quantity', 'woocommerce' ),
                                    'manage_stock'       => __( 'Manage stock', 'woocommerce' ),
                                    'sold_individually'  => __( 'Sold individually', 'woocommerce' ),
                                    'featured'           => __( 'Featured', 'woocommerce' ),

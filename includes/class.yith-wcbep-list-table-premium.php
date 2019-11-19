@@ -146,7 +146,8 @@ if ( !class_exists( 'YITH_WCBEP_List_Table_Premium' ) ) {
                 'width'          => array( 'width', false ),
                 'length'         => array( 'length', false ),
                 'stock_quantity' => array( 'stock_quantity', false ),
-                'menu_order'     => array( 'menu_order', false )
+                'sku'            => array( 'sku', false ),
+                'menu_order'     => array( 'menu_order', false ),
             );
 
             return !empty( $this->sortable ) ? $this->sortable : $default;
@@ -283,6 +284,7 @@ if ( !class_exists( 'YITH_WCBEP_List_Table_Premium' ) ) {
             $f_stock_status             = isset( $_REQUEST[ 'f_stock_status' ] ) ? $_REQUEST[ 'f_stock_status' ] : null;
             $f_product_type             = !empty( $_REQUEST[ 'f_product_type' ] ) ? $_REQUEST[ 'f_product_type' ] : false;
             $f_visibility               = !empty( $_REQUEST[ 'f_visibility' ] ) ? $_REQUEST[ 'f_visibility' ] : false;
+            $f_allow_backorders         = !empty( $_REQUEST[ 'f_allow_backorders' ] ) ? $_REQUEST[ 'f_allow_backorders' ] : false;
             $f_status                   = !empty( $_REQUEST[ 'f_status' ] ) ? $_REQUEST[ 'f_status' ] : false;
             $f_shipping_class           = !empty( $_REQUEST[ 'f_shipping_class' ] ) ? $_REQUEST[ 'f_shipping_class' ] : false;
 
@@ -343,6 +345,10 @@ if ( !class_exists( 'YITH_WCBEP_List_Table_Premium' ) ) {
                 case 'stock_quantity':
                     $query_args[ 'orderby' ]  = 'meta_value_num';
                     $query_args[ 'meta_key' ] = '_stock';
+                    break;
+                case 'sku':
+                    $query_args[ 'orderby' ]  = 'meta_value';
+                    $query_args[ 'meta_key' ] = '_sku';
                     break;
                 case 'menu_order':
                     $query_args[ 'orderby' ] = 'menu_order';
@@ -650,6 +656,14 @@ if ( !class_exists( 'YITH_WCBEP_List_Table_Premium' ) ) {
                     }
                 }
 
+                // Filter Allow backorders
+                if ( !empty( $f_allow_backorders ) ) {
+                    $meta_query[] = array(
+                        'key'   => '_backorders',
+                        'value' => $f_allow_backorders,
+                    );
+                }
+
                 // Filter Brands
                 if ( !empty( $filtered_brands ) ) {
                     $yith_brands_taxonomy = class_exists( 'YITH_WCBR' ) && isset( YITH_WCBR::$brands_taxonomy ) ? YITH_WCBR::$brands_taxonomy : 'yith_product_brand';
@@ -782,11 +796,15 @@ if ( !class_exists( 'YITH_WCBEP_List_Table_Premium' ) ) {
         }
 
         function column_default( $item, $column_name ) {
-            $r               = '';
-            $var_start       = '';
-            $var_end         = '';
-            $product_id      = $item->ID;
-            $product         = wc_get_product( $product_id );
+            $r          = '';
+            $var_start  = '';
+            $var_end    = '';
+            $product_id = $item->ID;
+            $product    = wc_get_product( $product_id );
+
+            if ( !$product )
+                return $r;
+
             $base_product_id = yit_get_base_product_id( $product );
 
             if ( $product->is_type( 'variation' ) ) {

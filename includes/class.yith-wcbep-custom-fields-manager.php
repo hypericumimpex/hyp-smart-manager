@@ -10,7 +10,6 @@ if ( !defined( 'ABSPATH' ) ) {
  * @package Yithemes
  * @since   1.1.2
  * @author  Yithemes
- *
  */
 class YITH_WCBEP_Custom_Fields_Manager {
 
@@ -27,6 +26,8 @@ class YITH_WCBEP_Custom_Fields_Manager {
     public $prefix = 'yith_wcbep_cf_';
 
     public $custom_fields = array();
+
+    protected $allow_variations = false;
 
     /**
      * Returns single instance of the class
@@ -46,7 +47,8 @@ class YITH_WCBEP_Custom_Fields_Manager {
      */
     protected function __construct() {
 
-        $this->custom_fields = self::get_custom_fields();
+        $this->custom_fields    = self::get_custom_fields();
+        $this->allow_variations = apply_filters( 'yith_wcbep_allow_editing_custom_fields_in_variations', false );
 
         // Add Tab for custom field Settings
         add_filter( 'yith_wcbep_settings_admin_tabs', array( $this, 'add_custom_field_tab' ) );
@@ -56,7 +58,9 @@ class YITH_WCBEP_Custom_Fields_Manager {
 
         add_filter( 'yith_wcbep_default_columns', array( $this, 'add_columns' ) );
         add_filter( 'yith_wcbep_manage_custom_columns', array( $this, 'manage_columns' ), 10, 3 );
-        add_filter( 'yith_wcbep_variation_not_editable_and_empty', array( $this, 'edit_not_editable_and_empty_in_variations' ) );
+        if ( !$this->allow_variations ) {
+            add_filter( 'yith_wcbep_variation_not_editable_and_empty', array( $this, 'edit_not_editable_and_empty_in_variations' ) );
+        }
         add_filter( 'yith_wcbep_td_extra_class_text', array( $this, 'add_extra_class_text_in_js' ) );
 
         add_action( 'yith_wcbep_update_product', array( $this, 'save_meta' ), 10, 4 );
@@ -112,7 +116,6 @@ class YITH_WCBEP_Custom_Fields_Manager {
 
     /**
      * @param $columns
-     *
      * @return mixed
      */
     public function add_columns( $columns ) {
@@ -128,7 +131,6 @@ class YITH_WCBEP_Custom_Fields_Manager {
      * @param $value
      * @param $column_name
      * @param $post
-     *
      * @return mixed
      */
     public function manage_columns( $value, $column_name, $post ) {
@@ -144,7 +146,6 @@ class YITH_WCBEP_Custom_Fields_Manager {
 
     /**
      * @param $values
-     *
      * @return array
      */
     public function edit_not_editable_and_empty_in_variations( $values ) {
@@ -158,7 +159,6 @@ class YITH_WCBEP_Custom_Fields_Manager {
 
     /**
      * @param $values
-     *
      * @return array
      */
     public function add_extra_bulk_columns_text( $values ) {
@@ -172,7 +172,6 @@ class YITH_WCBEP_Custom_Fields_Manager {
 
     /**
      * @param $extra_classes
-     *
      * @return array
      */
     public function add_extra_class_text_in_js( $extra_classes ) {
@@ -193,9 +192,14 @@ class YITH_WCBEP_Custom_Fields_Manager {
         foreach ( $this->custom_fields as $field ) {
             $field_name = $this->create_field_name( $field );
             $index      = array_search( $field_name, $matrix_keys );
-            if ( isset( $single_modify[ $index ] ) && !$is_variation ) {
-                $current_meta = $single_modify[ $index ];
-                update_post_meta( $product->get_id(), $field, $current_meta );
+            if ( isset( $single_modify[ $index ] ) && ( $this->allow_variations || !$is_variation ) ) {
+                $value       = $single_modify[ $index ];
+                $custom_hook = "yith_wcbep_save_custom_field_{$field}";
+                if ( has_action( $custom_hook ) ) {
+                    do_action( $custom_hook, $product, $value );
+                } else {
+                    update_post_meta( $product->get_id(), $field, $value );
+                }
             }
         }
     }

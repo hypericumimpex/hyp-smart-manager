@@ -56,6 +56,7 @@ jQuery( function ( $ ) {
         f_stock_status                       = $( '#yith-wcbep-stock-status-filter-select' ),
         f_status                             = $( '#yith-wcbep-status-filter-select' ),
         f_visibility                         = $( '#yith-wcbep-visibility-filter-select' ),
+        f_allow_backorders                   = $( '#yith-wcbep-allow_backorders-filter-select' ),
         f_shipping_class                     = $( '#yith-wcbep-shipping-class-filter-select' ),
         f_per_page                           = $( '#yith-wcbep-per-page-filter' ),
         f_product_type                       = $( '#yith-wcbep-product-type-filter-select' ),
@@ -154,7 +155,7 @@ jQuery( function ( $ ) {
                 }
                 if ( val != '' ) {
                     for ( var i in val ) {
-                        txt += select.find( 'option[value=' + val[ i ] + ']' ).html();
+                        txt += select.find( 'option[value="' + val[ i ] + '"]' ).html();
                         if ( i < ( val.length - 1 ) ) {
                             txt += ', ';
                         }
@@ -1389,7 +1390,8 @@ jQuery( function ( $ ) {
             f_per_page          : f_per_page.val(),
             f_product_type      : f_product_type.val(),
             f_stock_status      : f_stock_status.val(),
-            f_visibility            : f_visibility.val(),
+            f_visibility        : f_visibility.val(),
+            f_allow_backorders  : f_allow_backorders.val(),
             f_status            : f_status.val(),
             f_shipping_class    : f_shipping_class.val(),
             f_show_variations   : f_show_variations[ 0 ].checked ? 'yes' : 'no'
@@ -1547,7 +1549,7 @@ jQuery( function ( $ ) {
                     cell.find( '.yith-wcbep-select-selected' ).val( '[' + val + ']' );
                     var txt = '';
                     for ( var i in val ) {
-                        var name = this_chosen.find( 'option[value=' + val[ i ] + ']' ).text();
+                        var name = this_chosen.find( 'option[value="' + val[ i ] + '"]' ).text();
                         txt += name;
                         if ( i < ( val.length - 1 ) ) {
                             txt += ', ';
@@ -1922,7 +1924,7 @@ jQuery( function ( $ ) {
             tags_choosed       = [];
 
         for ( var k in f_tags.val() ) {
-            var tag_name = f_tags.find( 'option[value=' + f_tags.val()[ k ] + ']' ).html();
+            var tag_name = f_tags.find( 'option[value="' + f_tags.val()[ k ] + '"]' ).html();
             tags_choosed.push( tag_name );
         }
 
@@ -2029,13 +2031,15 @@ jQuery( function ( $ ) {
             // CATEGORIES
             if ( categories_choosed != null && categories_choosed.length > 0 ) {
                 var this_categories = $.parseJSON( t_row[ current_matrix_keys.indexOf( 'categories' ) ] );
-                if ( this_categories.length < 1 ) {
+                if ( !this_categories || this_categories.length < 1 ) {
                     finded = false;
                 }
 
-                for ( var j in categories_choosed ) {
-                    if ( this_categories.indexOf( categories_choosed[ j ] ) < 0 ) {
-                        finded = false;
+                if ( this_categories ) {
+                    for ( var j in categories_choosed ) {
+                        if ( this_categories.indexOf( categories_choosed[ j ] ) < 0 ) {
+                            finded = false;
+                        }
                     }
                 }
 
@@ -2224,6 +2228,15 @@ jQuery( function ( $ ) {
                     filter_visibility = f_visibility.val();
                 if ( filter_visibility ) {
                     finded = this_visibility === filter_visibility;
+                }
+            }
+
+            // Allow Backorders
+            if ( f_allow_backorders.val().length > 0 ) {
+                var this_allow_backorders   = t_row[ current_matrix_keys.indexOf( 'allow_backorders' ) ],
+                    filter_allow_backorders = f_allow_backorders.val();
+                if ( filter_allow_backorders ) {
+                    finded = this_allow_backorders === filter_allow_backorders;
                 }
             }
 

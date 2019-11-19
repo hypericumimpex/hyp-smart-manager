@@ -416,6 +416,8 @@ div#yith-wcbep-columns-settings-wrapper {
     background    : #d5d5d5;
     border        : 1px solid #aaa;
     border-bottom : none;
+    width: auto!important;
+    height: auto!important;
 }
 
 #yith-wcbep-bulk-editor-container .ui-tabs-active a, #yith-wcbep-bulk-editor-container .ui-state-default a {

@@ -194,11 +194,9 @@ if ( !class_exists( 'YITH_WCBEP_Admin' ) ) {
 
         /**
          * Action Links
-         *
          * add the action links to plugin admin page
          *
          * @param $links | links plugin array
-         *
          * @return   mixed Array
          * @since    1.0
          * @author   Leanza Francesco <leanzafrancesco@gmail.com>
@@ -211,13 +209,11 @@ if ( !class_exists( 'YITH_WCBEP_Admin' ) ) {
 
         /**
          * plugin_row_meta
-         *
          * add the action links to plugin admin page
          *
          * @param $row_meta_args
          * @param $plugin_meta
          * @param $plugin_file
-         *
          * @return   array
          * @since    1.0
          * @use      plugin_row_meta
@@ -302,11 +298,10 @@ if ( !class_exists( 'YITH_WCBEP_Admin' ) ) {
 
             $is_panel = strpos( $screen->id, '_page_yith_wcbep_panel' ) > -1;
             if ( $is_panel ) {
-                wp_enqueue_style( 'yith-wcbep-admin-styles', YITH_WCBEP_ASSETS_URL . '/css/admin' . $premium_suffix . '.css' );
+                wp_enqueue_style( 'yith-wcbep-admin-styles', YITH_WCBEP_ASSETS_URL . '/css/admin' . $premium_suffix . '.css', array(), YITH_WCBEP_VERSION );
                 wp_enqueue_style( 'wp-color-picker' );
                 wp_enqueue_script( 'wp-color-picker' );
                 wp_enqueue_script( 'jquery-ui-tabs' );
-                wp_enqueue_style( 'jquery-ui-style-css', '//ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/themes/smoothness/jquery-ui.css' );
                 wp_enqueue_style( 'googleFontsOpenSans', '//fonts.googleapis.com/css?family=Open+Sans:400,600,700,800,300' );
 
                 wp_enqueue_script( 'jquery-ui-datepicker' );

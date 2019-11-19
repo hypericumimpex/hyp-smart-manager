@@ -55,7 +55,7 @@ if ( !class_exists( 'YITH_WCBEP_Admin_Premium' ) ) {
                 parse_str( $_REQUEST[ 'form' ], $form );
             }
             if ( !empty( $form[ 'yith-wcbep-selected-products' ] ) ) {
-                $ids = json_decode( $form[ 'yith-wcbep-selected-products' ] );
+                $ids               = json_decode( $form[ 'yith-wcbep-selected-products' ] );
                 $args[ 'include' ] = $ids;
             }
             return $args;
@@ -400,6 +400,11 @@ if ( !class_exists( 'YITH_WCBEP_Admin_Premium' ) ) {
                     $product        = new WC_Product( $id );
                     $is_new_product = true;
                 } else {
+                    // EDIT PRODUCT TYPE
+                    if ( isset( $prod_type ) && $prod_type !== 'variation' ) {
+                        wp_set_object_terms( $id, $prod_type, 'product_type' );
+                    }
+
                     $product = wc_get_product( $id );
                 }
 
@@ -410,13 +415,6 @@ if ( !class_exists( 'YITH_WCBEP_Admin_Premium' ) ) {
                     $is_variation = false;
                     if ( $product->is_type( 'variation' ) || $prod_type == 'variation' ) {
                         $is_variation = true;
-                    }
-
-                    // EDIT PRODUCT TYPE
-                    if ( isset( $prod_type ) && !$is_variation ) {
-                        wp_set_object_terms( $id, $prod_type, 'product_type' );
-                        // reload the product object after changing the product_type
-                        $product = wc_get_product( $id );
                     }
 
                     // EDIT REGULAR PRICE
@@ -841,8 +839,8 @@ if ( !class_exists( 'YITH_WCBEP_Admin_Premium' ) ) {
             $screen   = get_current_screen();
             $is_panel = strpos( $screen->id, '_page_yith_wcbep_panel' ) > -1;
             if ( $is_panel ) {
-                wp_enqueue_script( 'yith_wcbep_enabled_columns_tab_js', YITH_WCBEP_ASSETS_URL . '/js/enabled_columns_tab' . $suffix . '.js', array( 'jquery' ), '1.0.0', true );
-                wp_enqueue_script( 'yith_wcbep_custom_fields_tab_js', YITH_WCBEP_ASSETS_URL . '/js/custom_fields_tab' . $suffix . '.js', array( 'jquery' ), '1.0.0', true );
+                wp_enqueue_script( 'yith_wcbep_enabled_columns_tab_js', YITH_WCBEP_ASSETS_URL . '/js/enabled_columns_tab' . $suffix . '.js', array( 'jquery' ), YITH_WCBEP_VERSION, true );
+                wp_enqueue_script( 'yith_wcbep_custom_fields_tab_js', YITH_WCBEP_ASSETS_URL . '/js/custom_fields_tab' . $suffix . '.js', array( 'jquery' ), YITH_WCBEP_VERSION, true );
             }
         }
 
@@ -853,11 +851,9 @@ if ( !class_exists( 'YITH_WCBEP_Admin_Premium' ) ) {
          * @since 2.0.0
          */
         public function register_plugin_for_activation() {
-            if ( !class_exists( 'YIT_Plugin_Licence' ) ) {
-                require_once( YITH_WCBEP_DIR . 'plugin-fw/lib/yit-plugin-licence.php' );
+            if ( function_exists( 'YIT_Plugin_Licence' ) ) {
+                YIT_Plugin_Licence()->register( YITH_WCBEP_INIT, YITH_WCBEP_SECRET_KEY, YITH_WCBEP_SLUG );
             }
-
-            YIT_Plugin_Licence()->register( YITH_WCBEP_INIT, YITH_WCBEP_SECRET_KEY, YITH_WCBEP_SLUG );
         }
 
         /**
@@ -867,11 +863,10 @@ if ( !class_exists( 'YITH_WCBEP_Admin_Premium' ) ) {
          * @since 2.0.0
          */
         public function register_plugin_for_updates() {
-            if ( !class_exists( 'YIT_Upgrade' ) ) {
-                require_once( YITH_WCBEP_DIR . 'plugin-fw/lib/yit-upgrade.php' );
+            if ( function_exists( 'YIT_Upgrade' ) ) {
+                YIT_Upgrade()->register( YITH_WCBEP_SLUG, YITH_WCBEP_INIT );
             }
 
-            YIT_Upgrade()->register( YITH_WCBEP_SLUG, YITH_WCBEP_INIT );
         }
     }
 }

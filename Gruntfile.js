@@ -93,6 +93,7 @@ module.exports = function ( grunt ) {
                                       potFilename: potInfo.potFilename,
                                       exclude    : [
                                           'plugin-fw/.*',
+                                          'plugin-upgrade/.*',
                                           'mode_modules/.*',
                                           'tmp/.*',
                                       ]

@@ -301,6 +301,22 @@ $current_language = !empty( $sitepress ) ? $sitepress->get_current_language() : 
                 </tr>
                 <tr>
                     <td class="yith-wcbep-filter-form-label-col">
+                        <label><?php echo yith_wcbep_get_label( 'allow_backorders' ) ?></label>
+                    </td>
+                    <td class="yith-wcbep-filter-form-content-col">
+                        <select id="yith-wcbep-allow_backorders-filter-select" name="yith-wcbep-allow_backorders-filter-select"
+                                class="is_resetable yith-wcbep-fullwidth-in-filters">
+                            <option value=""></option>
+                            <?php
+                            foreach ( wc_get_product_backorder_options() as $_key => $_label ) {
+                                echo "<option value='$_key'>$_label</option>";
+                            }
+                            ?>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="yith-wcbep-filter-form-label-col">
                         <label><?php echo yith_wcbep_get_label( 'shipping_class' ) ?></label>
                     </td>
                     <td class="yith-wcbep-filter-form-content-col">
